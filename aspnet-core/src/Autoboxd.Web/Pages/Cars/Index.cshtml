@@ -1,5 +1,6 @@
-﻿@page
+﻿@page "{title=Cars}"
 @model Autoboxd.Web.Pages.Cars.IndexModel
 @{
 }
-<div>Cars!</div>
+<div>@Model.Title</div>
+@await Component.InvokeAsync("Item")

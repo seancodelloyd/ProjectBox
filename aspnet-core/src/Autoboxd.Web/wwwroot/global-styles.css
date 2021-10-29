@@ -1,1 +1,4 @@
 ﻿/* Your Global Styles */
+nav.navbar {
+    background-color: #00000050 !important;
+}
