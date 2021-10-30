@@ -8,6 +8,7 @@ namespace Autoboxd
         public AutoboxdApplicationAutoMapperProfile()
         {
             CreateMap<Item, ItemDto>();
+            CreateMap<CreateUpdateItemDto, Item>();
         }
     }
 }
