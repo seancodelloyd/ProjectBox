@@ -1,5 +1,7 @@
 ﻿$(function () {
     var l = abp.localization.getResource('Autoboxd');
+    var createModal = new abp.ModalManager(abp.appPath + 'Items/CreateModal');
+    var editModal = new abp.ModalManager(abp.appPath + 'Items/EditModal');
 
     var dataTable = $('#ItemsTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
@@ -24,14 +26,30 @@
                                 locale: abp.localization.currentCulture.name
                             }).toLocaleString(luxon.DateTime.DATETIME_SHORT);
                     }
+                },
+                {
+                    title: l('Actions'),
+                    rowAction: {
+                        items:
+                            [
+                                {
+                                    text: l('Edit'),
+                                    action: function (data) {
+                                        editModal.open({ id: data.record.id });
+                                    }
+                                }
+                            ]
+                    }
                 }
             ]
         })
     );
 
-    var createModal = new abp.ModalManager(abp.appPath + 'Items/CreateModal');
-
     createModal.onResult(function () {
+        dataTable.ajax.reload();
+    });
+
+    editModal.onResult(function () {
         dataTable.ajax.reload();
     });
 

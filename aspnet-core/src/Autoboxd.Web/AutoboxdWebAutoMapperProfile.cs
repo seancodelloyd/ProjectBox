@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Autoboxd.Items;
+using AutoMapper;
 
 namespace Autoboxd.Web
 {
@@ -6,7 +7,7 @@ namespace Autoboxd.Web
     {
         public AutoboxdWebAutoMapperProfile()
         {
-            //Define your AutoMapper configuration here for the Web project.
+            CreateMap<ItemDto, CreateUpdateItemDto>();
         }
     }
 }
