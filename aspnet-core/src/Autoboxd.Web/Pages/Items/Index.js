@@ -37,6 +37,20 @@
                                     action: function (data) {
                                         editModal.open({ id: data.record.id });
                                     }
+                                },
+                                {
+                                    text: l('Delete'),
+                                    confirmMessage: function (data) {
+                                        return l('AreYouSureToDelete', data.record.name);
+                                    },
+                                    action: function (data) {
+                                        autoboxd.items.item
+                                            .delete(data.record.id)
+                                            .then(function () {
+                                                abp.notify.info(l('SuccessfullyDeleted'));
+                                                dataTable.ajax.reload();
+                                            });
+                                    }
                                 }
                             ]
                     }

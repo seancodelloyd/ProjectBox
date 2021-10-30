@@ -17,6 +17,7 @@
     "Price": "Price",
     "AreYouSure": "Are you sure?",
     "AreYouSureToDelete": "Are you sure you want to delete this item?",
+    "SuccessfullyDeleted": "Item has been successfully deleted",
     "Enum:BookType:0": "Undefined",
     "Enum:BookType:1": "Adventure",
     "Enum:BookType:2": "Biography",
