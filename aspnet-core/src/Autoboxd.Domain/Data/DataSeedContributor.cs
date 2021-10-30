@@ -12,14 +12,14 @@ namespace Autoboxd.Data
     public class DataSeedContributor : IDataSeedContributor, ITransientDependency
     {
         private readonly IRepository<Item, Guid> _itemRepository;
-        //private readonly IRepository<Rating, Guid> _ratingRepository;
+        private readonly IRepository<Rating, Guid> _ratingRepository;
 
         public DataSeedContributor(
-            IRepository<Item, Guid> itemRepository//,
-            /*IRepository<Rating, Guid> ratingRepository*/)
+            IRepository<Item, Guid> itemRepository,
+            IRepository<Rating, Guid> ratingRepository)
         {
             _itemRepository = itemRepository;
-            //_ratingRepository = ratingRepository;
+            _ratingRepository = ratingRepository;
         }
 
         public async Task SeedAsync(DataSeedContext context)
@@ -38,7 +38,7 @@ namespace Autoboxd.Data
                 },
                 autoSave: true
             );
-/*
+
             if (await _ratingRepository.GetCountAsync() <= 0)
             {
                 await _ratingRepository.InsertAsync(
@@ -49,7 +49,7 @@ namespace Autoboxd.Data
                     },
                     autoSave: true
                 );
-            }*/
+            }
         }
     }
 }

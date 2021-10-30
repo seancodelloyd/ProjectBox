@@ -28,6 +28,7 @@ namespace Autoboxd.EntityFrameworkCore
         ITenantManagementDbContext
     {
         public DbSet<Item> Items { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
         
         #region Entities from the modules
         

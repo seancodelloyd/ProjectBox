@@ -9,6 +9,7 @@ using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Entities;
 
 using Autoboxd.Ratings;
+using Autoboxd.Permissions;
 
 namespace Autoboxd.Items
 {
@@ -20,15 +21,21 @@ namespace Autoboxd.Items
             CreateUpdateItemDto>,
             IItemService
     {
-        //private readonly IRepository<Rating, Guid> _ratingRepository;
+        private readonly IRepository<Rating, Guid> _ratingRepository;
 
         public ItemService(
-            IRepository<Item, Guid> itemRepository/*,
-            IRepository<Rating, Guid> ratingRepository*/) : base(itemRepository)
+            IRepository<Item, Guid> itemRepository,
+            IRepository<Rating, Guid> ratingRepository) : base(itemRepository)
         {
-            //_ratingRepository = ratingRepository;
+            _ratingRepository = ratingRepository;
+
+            GetPolicyName = AutoboxdPermissions.Items.Default;
+            GetListPolicyName = AutoboxdPermissions.Items.Default;
+            CreatePolicyName = AutoboxdPermissions.Items.Create;
+            UpdatePolicyName = AutoboxdPermissions.Items.Edit;
+            DeletePolicyName = AutoboxdPermissions.Items.Delete;
         }
-        /*
+        
         public override async Task<ItemDto> GetAsync(Guid id)
         {
             var queryable = await Repository.GetQueryableAsync();
@@ -53,8 +60,7 @@ namespace Autoboxd.Items
             var queryable = await Repository.GetQueryableAsync();
 
             var query = from item in queryable
-                        join rating in _ratingRepository on item.Id equals rating.ItemId
-                        select new { item, rating };
+                        select new { item };
 
             //Paging
             query = query
@@ -89,6 +95,6 @@ namespace Autoboxd.Items
             }
 
             return $"item.{sorting}";
-        }*/
+        }
     }
 }
