@@ -1,11 +1,11 @@
 ﻿:root {
-    --menu-color: #00000050;
+    --menu-color: #00000090;
     --card-color: #ffffff10;
+    --background-color: #101010;
 }
 
 body {
-    background: url(https://www.toptal.com/designers/subtlepatterns/patterns/footer_lodyas.png);
-    ;
+   /* background: url(https://www.toptal.com/designers/subtlepatterns/patterns/footer_lodyas.png);*/
 }
 
 nav.navbar {
@@ -13,7 +13,7 @@ nav.navbar {
 }
 
 .abp-application-layout {
-    background-color: var(--dark) !important;
+    background-color: var(--background-color) !important;
 }
 
 h1, h2, h3, h4, h5, h6, p, span, div, td, tr {
@@ -24,3 +24,54 @@ h1, h2, h3, h4, h5, h6, p, span, div, td, tr {
     background-color: var(--card-color);
 }
 
+.hero-wrapper {
+    height: 675px;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    width: 1200px;
+    z-index: -1;
+}
+
+.hero-image {
+    background-position: center -15px;
+    background-image: url(/images/hero.jpg);
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 99.95%;
+    position: absolute;
+    width: 100%;
+    opacity: 1;
+}
+
+.backdropmask {
+    padding-top: 500px;
+    position: relative;
+}
+
+.backdropmask::before {
+    background-image: linear-gradient( 90deg,
+    var(--background-color) 0,
+    #ffffff00 16.66666667%,
+    #ffffff00 83.33333333%,
+    var(--background-color)),
+        linear-gradient(0deg, 
+        var(--background-color) 0,
+        var(--background-color) 16.66666667%,
+        #ffffff00 83.33333333%,
+        var(--background-color)
+    );
+    background-repeat: no-repeat;
+    content: "";
+    display: block;
+    height: 675px;
+    left: 50%;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    width: 1200px;
+    z-index: 0;
+}
