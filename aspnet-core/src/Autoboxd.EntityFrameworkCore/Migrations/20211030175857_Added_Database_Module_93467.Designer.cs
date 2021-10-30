@@ -4,15 +4,17 @@ using Autoboxd.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
 namespace Autoboxd.Migrations
 {
     [DbContext(typeof(AutoboxdDbContext))]
-    partial class AutoboxdDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211030175857_Added_Database_Module_93467")]
+    partial class Added_Database_Module_93467
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

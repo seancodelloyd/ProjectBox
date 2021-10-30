@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -16,6 +16,7 @@ using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
 using Autoboxd.Items;
 using Autoboxd.Ratings;
+using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 
 namespace Autoboxd.EntityFrameworkCore
 {
@@ -79,6 +80,7 @@ namespace Autoboxd.EntityFrameworkCore
             builder.ConfigureTenantManagement();
 
             ConfigureEntities(builder);
+            builder.ConfigureBlobStoring();
         }
 
         private void ConfigureEntities(ModelBuilder builder)
