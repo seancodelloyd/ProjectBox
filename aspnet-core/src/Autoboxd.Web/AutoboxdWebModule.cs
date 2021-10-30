@@ -39,6 +39,7 @@ using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Autoboxd.Permissions;
+using Volo.Abp.BlobStoring;
 
 namespace Autoboxd.Web
 {
@@ -54,7 +55,8 @@ namespace Autoboxd.Web
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpSwashbuckleModule)
+        typeof(AbpSwashbuckleModule),
+        typeof(AbpBlobStoringModule)
         )]
     public class AutoboxdWebModule : AbpModule
     {
