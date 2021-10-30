@@ -1,5 +1,4 @@
-﻿using Autoboxd.Items;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -14,6 +13,9 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+
+using Autoboxd.Items;
+using Autoboxd.Ratings;
 
 namespace Autoboxd.EntityFrameworkCore
 {
@@ -85,6 +87,15 @@ namespace Autoboxd.EntityFrameworkCore
                 b.ToTable(AutoboxdConsts.DbTablePrefix + "Items", AutoboxdConsts.DbSchema);
                 b.ConfigureByConvention();
                 b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+            });
+
+            builder.Entity<Rating>(b =>
+            {
+                b.ToTable(AutoboxdConsts.DbTablePrefix + "Ratings", AutoboxdConsts.DbSchema);
+                b.ConfigureByConvention();
+                b.Property(x => x.Value).IsRequired();
+
+                b.HasOne<Item>().WithMany().HasForeignKey(x => x.ItemId).IsRequired();
             });
         }
     }

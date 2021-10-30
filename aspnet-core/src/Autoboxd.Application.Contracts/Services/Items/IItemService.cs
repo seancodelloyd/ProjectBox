@@ -1,9 +1,8 @@
-﻿using Autoboxd.Items;
-using System;
+﻿using System;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
-namespace Autoboxd.Services.Items
+namespace Autoboxd.Items
 {
     public interface IItemService : ICrudAppService<
         ItemDto,

@@ -1,10 +1,9 @@
-﻿using Autoboxd.Items;
-using System;
+﻿using System;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
-namespace Autoboxd.Services.Items
+namespace Autoboxd.Items
 {
     public class ItemService : CrudAppService<
             Item, //The Book entity
