@@ -1,4 +1,19 @@
-﻿/* Your Global Styles */
+﻿:root {
+    --menu-color: #00000050;
+    --card-color: green;
+}
 nav.navbar {
-    background-color: #00000050 !important;
+    background-color: var(--menu-color) !important;
+}
+
+.abp-application-layout {
+    background-color: var(--dark) !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, div {
+    color: var(--light);
+}
+
+.card-body {
+    background-color: var(--card-color);
 }
