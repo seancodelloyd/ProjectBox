@@ -28,4 +28,15 @@
             ]
         })
     );
+
+    var createModal = new abp.ModalManager(abp.appPath + 'Items/CreateModal');
+
+    createModal.onResult(function () {
+        dataTable.ajax.reload();
+    });
+
+    $('#NewItemButton').click(function (e) {
+        e.preventDefault();
+        createModal.open();
+    });
 });
