@@ -1,19 +1,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Autoboxd.Web.Pages.Cars
+namespace Autoboxd.Web.Pages.Items
 {
     [Authorize]
     public class IndexModel : PageModel
     {
-        public string Title
+        public void OnGet()
         {
-            get; set;
-        }
-
-        public void OnGet(string title)
-        {
-            Title = title;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿:root {
     --menu-color: #00000050;
-    --card-color: green;
+    --card-color: #ffffff10;
 }
 nav.navbar {
     background-color: var(--menu-color) !important;
@@ -10,10 +10,10 @@ nav.navbar {
     background-color: var(--dark) !important;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, div {
+h1, h2, h3, h4, h5, h6, p, span, div, td, tr {
     color: var(--light);
 }
 
-.card-body {
+.card {
     background-color: var(--card-color);
 }

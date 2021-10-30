@@ -20,15 +20,15 @@ namespace Autoboxd.Items
             CreateUpdateItemDto>,
             IItemService
     {
-        private readonly IRepository<Rating, Guid> _ratingRepository;
+        //private readonly IRepository<Rating, Guid> _ratingRepository;
 
         public ItemService(
-            IRepository<Item, Guid> itemRepository,
-            IRepository<Rating, Guid> ratingRepository) : base(itemRepository)
+            IRepository<Item, Guid> itemRepository/*,
+            IRepository<Rating, Guid> ratingRepository*/) : base(itemRepository)
         {
-            _ratingRepository = ratingRepository;
+            //_ratingRepository = ratingRepository;
         }
-
+        /*
         public override async Task<ItemDto> GetAsync(Guid id)
         {
             var queryable = await Repository.GetQueryableAsync();
@@ -55,7 +55,6 @@ namespace Autoboxd.Items
             var query = from item in queryable
                         join rating in _ratingRepository on item.Id equals rating.ItemId
                         select new { item, rating };
-
 
             //Paging
             query = query
@@ -90,6 +89,6 @@ namespace Autoboxd.Items
             }
 
             return $"item.{sorting}";
-        }
+        }*/
     }
 }
