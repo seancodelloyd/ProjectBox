@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Autoboxd.Items;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
@@ -23,7 +25,7 @@ namespace Autoboxd.EntityFrameworkCore
         IIdentityDbContext,
         ITenantManagementDbContext
     {
-        /* Add DbSet properties for your Aggregate Roots / Entities here. */
+        public DbSet<Item> Items { get; set; }
         
         #region Entities from the modules
         
@@ -73,14 +75,17 @@ namespace Autoboxd.EntityFrameworkCore
             builder.ConfigureFeatureManagement();
             builder.ConfigureTenantManagement();
 
-            /* Configure your own tables/entities inside here */
+            ConfigureEntities(builder);
+        }
 
-            //builder.Entity<YourEntity>(b =>
-            //{
-            //    b.ToTable(AutoboxdConsts.DbTablePrefix + "YourEntities", AutoboxdConsts.DbSchema);
-            //    b.ConfigureByConvention(); //auto configure for the base class props
-            //    //...
-            //});
+        private void ConfigureEntities(ModelBuilder builder)
+        {
+            builder.Entity<Item>(b =>
+            {
+                b.ToTable(AutoboxdConsts.DbTablePrefix + "Items", AutoboxdConsts.DbSchema);
+                b.ConfigureByConvention();
+                b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+            });
         }
     }
 }
