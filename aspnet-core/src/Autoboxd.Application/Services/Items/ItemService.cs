@@ -6,11 +6,11 @@ using Volo.Abp.Domain.Repositories;
 namespace Autoboxd.Items
 {
     public class ItemService : CrudAppService<
-            Item, //The Book entity
-            ItemDto, //Used to show books
-            Guid, //Primary key of the book entity
-            PagedAndSortedResultRequestDto, //Used for paging/sorting
-            CreateUpdateItemDto>, //Used to create/update a book
+            Item,
+            ItemDto,
+            Guid,
+            PagedAndSortedResultRequestDto,
+            CreateUpdateItemDto>,
             IItemService
     {
         public ItemService(IRepository<Item, Guid> repository) : base(repository)

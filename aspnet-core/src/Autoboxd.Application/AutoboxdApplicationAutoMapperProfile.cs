@@ -1,5 +1,7 @@
-﻿using Autoboxd.Items;
-using AutoMapper;
+﻿using AutoMapper;
+
+using Autoboxd.Items;
+using Autoboxd.Ratings;
 
 namespace Autoboxd
 {
@@ -9,6 +11,9 @@ namespace Autoboxd
         {
             CreateMap<Item, ItemDto>();
             CreateMap<CreateUpdateItemDto, Item>();
+
+            CreateMap<Rating, RatingDto>();
+            CreateMap<CreateUpdateRatingDto, Rating>();
         }
     }
 }
