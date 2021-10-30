@@ -37,6 +37,8 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Autoboxd.Permissions;
 
 namespace Autoboxd.Web
 {
@@ -85,6 +87,13 @@ namespace Autoboxd.Web
             ConfigureNavigationServices();
             ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
+
+            Configure<RazorPagesOptions>(options =>
+            {
+                options.Conventions.AuthorizePage("/Items/Index", AutoboxdPermissions.Items.Default);
+                options.Conventions.AuthorizePage("/Items/CreateModal", AutoboxdPermissions.Items.Create);
+                options.Conventions.AuthorizePage("/Items/EditModal", AutoboxdPermissions.Items.Edit);
+            });
         }
 
         private void ConfigureUrls(IConfiguration configuration)

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Autoboxd.Localization;
 using Autoboxd.MultiTenancy;
+using Autoboxd.Permissions;
 using Volo.Abp.Identity.Web.Navigation;
 using Volo.Abp.SettingManagement.Web.Navigation;
 using Volo.Abp.TenantManagement.Web.Navigation;
@@ -46,13 +47,16 @@ namespace Autoboxd.Web.Menus
             administration.SetSubItemOrder(IdentityMenuNames.GroupName, 2);
             administration.SetSubItemOrder(SettingManagementMenuNames.GroupName, 3);
 
-            administration.AddItem(
+            if (await context.IsGrantedAsync(AutoboxdPermissions.Items.Default))
+            {
+                administration.AddItem(
                     new ApplicationMenuItem(
                         "ItemStore.Items",
                         l["Menu:Items"],
                         url: "/Items"
                     )
                 );
+            }
         }
     }
 }

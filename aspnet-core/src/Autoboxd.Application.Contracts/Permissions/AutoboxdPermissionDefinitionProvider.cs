@@ -8,9 +8,12 @@ namespace Autoboxd.Permissions
     {
         public override void Define(IPermissionDefinitionContext context)
         {
-            var myGroup = context.AddGroup(AutoboxdPermissions.GroupName);
-            //Define your own permissions here. Example:
-            //myGroup.AddPermission(AutoboxdPermissions.MyPermission1, L("Permission:MyPermission1"));
+            var group = context.AddGroup(AutoboxdPermissions.GroupName);
+
+            var booksPermission = group.AddPermission(AutoboxdPermissions.Items.Default, L("Permission:Items"));
+            booksPermission.AddChild(AutoboxdPermissions.Items.Create, L("Permission:Items.Create"));
+            booksPermission.AddChild(AutoboxdPermissions.Items.Edit, L("Permission:Items.Edit"));
+            booksPermission.AddChild(AutoboxdPermissions.Items.Delete, L("Permission:Items.Delete"));
         }
 
         private static LocalizableString L(string name)

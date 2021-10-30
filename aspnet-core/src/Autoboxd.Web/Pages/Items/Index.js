@@ -34,12 +34,14 @@
                             [
                                 {
                                     text: l('Edit'),
+                                    visible: abp.auth.isGranted('Autoboxd.Items.Edit'),
                                     action: function (data) {
                                         editModal.open({ id: data.record.id });
                                     }
                                 },
                                 {
                                     text: l('Delete'),
+                                    visible: abp.auth.isGranted('Autoboxd.Items.Delete'),
                                     confirmMessage: function (data) {
                                         return l('AreYouSureToDelete', data.record.name);
                                     },
