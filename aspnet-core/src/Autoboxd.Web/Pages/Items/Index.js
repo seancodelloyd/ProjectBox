@@ -1,7 +1,7 @@
 ﻿$(function () {
-    var l = abp.localization.getResource('BookStore');
+    var l = abp.localization.getResource('Autoboxd');
 
-    var dataTable = $('#BooksTable').DataTable(
+    var dataTable = $('#ItemsTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
             serverSide: true,
             paging: true,
