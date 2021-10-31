@@ -10,5 +10,6 @@ namespace Autoboxd.Items
         public string Description { get; set; }
         public int ManufacturedYear { get; set; }
         public decimal Rating { get; set; }
+        public bool IsFeatured { get; set; }
     }
 }

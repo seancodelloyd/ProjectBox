@@ -1,4 +1,7 @@
-﻿:root {
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+:root {
     --brand-color: #F2663A;
     --menu-color: #00000090;
     --card-color: #ffffff10;
@@ -21,6 +24,11 @@ nav.navbar {
 
 h1, h2, h3, h4, h5, h6, p, span, div, td, tr {
     color: var(--light);
+    font-family: 'Work Sans', sans-serif;
+}
+
+h1 {
+    font-family: 'Roboto Slab', serif;
 }
 
 .card {
@@ -87,9 +95,15 @@ h1, h2, h3, h4, h5, h6, p, span, div, td, tr {
     text-transform: uppercase;
 }
 
+.showcase .item-link {
+    height: 128px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
 .showcase img {
     width: 100%;
-    border-radius: 5px;
 }
 
 .content-section .content-section-header small {
@@ -111,11 +125,15 @@ h1, h2, h3, h4, h5, h6, p, span, div, td, tr {
     border-radius: 5px;
 }
 
-.component.item-link img:hover {
+.component.item-link:hover {
     border: 2px solid var(--brand-color);
     margin: -2px;
     width: calc(100% + 4px);
     height: calc(100% + 4px)
+}
+
+.showcase .component.item-link:hover {
+    height: 132px;
 }
 
 .modal-content {
@@ -124,4 +142,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, td, tr {
 
 footer {
     background-color: var(--background-color-light);
+    position: absolute;
+    width: 100%;
+    margin-top: 50px;
 }

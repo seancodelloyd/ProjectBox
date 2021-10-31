@@ -16,7 +16,7 @@
 
 <div class="container home">
     <div class="p-5 text-center">
-        <h1>Track classic automobiles.</h1>
+        <h1 style="font-weight: bold">Track classic automobiles.</h1>
         <h1>Save and list your favourites.</h1>
         <h1>Share your thoughts with the world.</h1>
         <br />
@@ -30,10 +30,10 @@
     @await Component.InvokeAsync("ContentSection", new { title = "Featured cars", link = "https://www.google.com" })
     <div class="showcase">
         <div class="row p-3">
-            <div class="col-lg-3 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car1.jpg" })</div>
-            <div class="col-lg-3 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car2.jpg" })</div>
-            <div class="col-lg-3 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car3.jpg" })</div>
-            <div class="col-lg-3 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car4.jpg" })</div>
+            @foreach (var featuredItem in Model.FeaturedItems)
+            {
+                <div class="col-lg-3 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + featuredItem.Path, path = featuredItem.Path })</div>
+            }
         </div>
     </div>
 
@@ -65,18 +65,3 @@
         </div>
     </div>
 </div>
-
-<footer>
-    <div class="mt-5 my-3 text-center">
-        <h3>Meet the ABP Commercial</h3>
-        <p>A Complete Web Application Platform Built on the ABP Framework</p>
-    </div>
-
-    <div class="mb-5 text-center">
-        <p class="align-middle">
-            <a href="https://twitter.com/abpframework" target="_blank" class="mx-2"><i class="fa fa-twitter"></i><span class="text-secondary"> Abp Framework</span></a>
-            <a href="https://twitter.com/abpcommercial" target="_blank" class="mx-2"><i class="fa fa-twitter"></i><span class="text-secondary"> Abp Commercial</span></a>
-            <a href="https://github.com/abpframework/abp" target="_blank" class="mx-2"><i class="fa fa-github"></i><span class="text-secondary"> abpframework</span></a>
-        </p>
-    </div>
-</footer>

@@ -16,5 +16,7 @@ namespace Autoboxd.Items
         public string Description { get; set; } = "";
 
         public int ManufacturerYear { get; set; } = 0;
+
+        public bool IsFeatured { get; set; } = false;
     }
 }
