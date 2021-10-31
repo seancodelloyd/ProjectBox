@@ -33,6 +33,7 @@ namespace Autoboxd.Data
                 new Item
                 {
                     Name = "Ferrari F50",
+                    Path = "ferrari-f50-1995",
                     Description = "A very fast car",
                     ManufacturedYear = 1995
                 },

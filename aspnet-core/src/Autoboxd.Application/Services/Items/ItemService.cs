@@ -87,6 +87,25 @@ namespace Autoboxd.Items
             );
         }
 
+        public async Task<ItemDto> GetByPathAsync(string path)
+        {
+            var queryable = await Repository.GetQueryableAsync();
+
+            var query = from item in queryable
+                        where item.Path == path
+                        select new { item };
+
+            var queryResult = await AsyncExecuter.FirstOrDefaultAsync(query);
+
+            if (queryResult == null)
+            {
+                throw new EntityNotFoundException(typeof(Item), path);
+            }
+
+            var itemDto = ObjectMapper.Map<Item, ItemDto>(queryResult.item);
+            return itemDto;
+        }
+
         private static string NormalizeSorting(string sorting)
         {
             if (sorting.IsNullOrEmpty())

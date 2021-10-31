@@ -24,17 +24,6 @@ namespace Autoboxd.Web.Menus
             var administration = context.Menu.GetAdministration();
             var l = context.GetLocalizer<AutoboxdResource>();
 
-            context.Menu.Items.Insert(
-                0,
-                new ApplicationMenuItem(
-                    AutoboxdMenus.Home,
-                    l["Menu:Home"],
-                    "~/",
-                    icon: "fas fa-home",
-                    order: 0
-                )
-            );
-
             if (MultiTenancyConsts.IsEnabled)
             {
                 administration.SetSubItemOrder(TenantManagementMenuNames.GroupName, 1);

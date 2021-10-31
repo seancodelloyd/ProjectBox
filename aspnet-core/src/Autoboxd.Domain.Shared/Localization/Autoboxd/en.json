@@ -17,6 +17,7 @@
     "Price": "Price",
     "AreYouSure": "Are you sure?",
     "AreYouSureToDelete": "Are you sure you want to delete this item?",
+    "Button:JoinHere": "Register here!",
     "SuccessfullyDeleted": "Item has been successfully deleted",
     "Permission:ItemStore": "Item Store",
     "Permission:Items": "Item Management",

@@ -1,0 +1,17 @@
+﻿@model Autoboxd.Web.Components.ContentSection.ContentSectionViewModel
+
+<div class="component content-section">
+    <div class="content-section-header">
+        <small>@Model.Title</small>
+        @if (Model.Link != null)
+        {
+            <small class="float-right">
+                <a href="@Model.Link">@Model.LinkText <i class="fas fa-angle-right mx-1 my-2"></i></a>
+            </small>
+        }
+        @if (Model.HasRule)
+        {
+            <hr />
+        }
+    </div>
+</div>
