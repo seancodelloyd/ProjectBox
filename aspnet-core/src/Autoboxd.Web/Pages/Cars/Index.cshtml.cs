@@ -1,16 +1,30 @@
+using Autoboxd.Items;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace Autoboxd.Web.Pages.Cars
 {
     public class IndexModel : PageModel
     {
-        public string Title
+        public readonly IItemService _itemService;
+
+        public IndexModel(IItemService itemService)
         {
-            get; set;
+            _itemService = itemService;
         }
+
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int Year { get; set; }
+
         public void OnGet(string title)
         {
-            Title = title;
+            Task<ItemDto> task = Task.Run(() => _itemService.GetByPathAsync(title));
+            var item = task.Result;
+
+            Name = item.Name;
+            Description = item.Description;
+            Year = item.ManufacturedYear;
         }
     }
 }

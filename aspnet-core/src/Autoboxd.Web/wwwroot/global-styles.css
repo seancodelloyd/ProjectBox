@@ -3,6 +3,7 @@
     --menu-color: #00000090;
     --card-color: #ffffff10;
     --background-color: #141110;
+    --background-color-light: #403a38;
     --rule-color: #ffffff50;
 }
 
@@ -116,4 +117,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, td, tr {
     margin: -2px;
     width: calc(100% + 4px);
     height: calc(100% + 4px)
+}
+
+.modal-content {
+    background-color: var(--background-color-light);
+}
+
+footer {
+    background-color: var(--background-color-light);
 }

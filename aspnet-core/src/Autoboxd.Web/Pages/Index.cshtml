@@ -18,9 +18,9 @@
 
 <div class="container home">
     <div class="p-5 text-center">
-        <h1>Track films you’ve watched.</h1>
-        <h1>Save those you want to see.</h1>
-        <h1>Tell your friends what’s good.</h1>
+        <h1>Track classic automobiles.</h1>
+        <h1>Save and list your favourites.</h1>
+        <h1>Share your thoughts with the world.</h1>
         <br />
 
         @if (!CurrentUser.IsAuthenticated)
@@ -66,8 +66,9 @@
             @await Component.InvokeAsync("ContentSection", new { title = "Popular lists", link = "https://www.google.com" })
         </div>
     </div>
+</div>
 
-
+<footer>
     <div class="mt-5 my-3 text-center">
         <h3>Meet the ABP Commercial</h3>
         <p>A Complete Web Application Platform Built on the ABP Framework</p>
@@ -80,4 +81,4 @@
             <a href="https://github.com/abpframework/abp" target="_blank" class="mx-2"><i class="fa fa-github"></i><span class="text-secondary"> abpframework</span></a>
         </p>
     </div>
-</div>
+</footer>
