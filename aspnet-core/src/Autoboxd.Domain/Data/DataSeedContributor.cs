@@ -24,7 +24,7 @@ namespace Autoboxd.Data
 
         public async Task SeedAsync(DataSeedContext context)
         {
-            if (await _itemRepository.GetCountAsync() <= 0)
+            if (await _itemRepository.GetCountAsync() > 0)
             {
                 return;
             }
