@@ -83,6 +83,23 @@ namespace Autoboxd.Items
                 return itemDto;
             }).ToList();
 
+            var itemIds = itemDtos.Select(i => i.Id).ToList();
+
+            var ratings = _ratingRepository
+                .Where(r => itemIds.Any(i => i == r.ItemId))
+                .ToList();
+
+            foreach(var item in itemDtos)
+            {
+                var ratingCount = ratings.Count(r => r.ItemId == item.Id);
+               
+                var rating = ratingCount > 0 
+                    ? ratings.Where(r => r.ItemId == item.Id).Sum(r => r.Value) / ratingCount
+                    : 0;
+
+                item.Rating = rating / 2.0m;
+            }
+
             //Get the total count with another query
             var totalCount = await Repository.GetCountAsync();
 
@@ -108,6 +125,19 @@ namespace Autoboxd.Items
             }
 
             var itemDto = ObjectMapper.Map<Item, ItemDto>(queryResult.item);
+
+            var ratings = _ratingRepository
+                .Where(r => itemDto.Id == r.ItemId)
+                .ToList();
+
+            var ratingCount = ratings.Count(r => r.ItemId == itemDto.Id);
+
+            var rating = ratingCount > 0
+                ? ratings.Where(r => r.ItemId == itemDto.Id).Sum(r => r.Value) / ratingCount
+                : 0;
+
+            itemDto.Rating = rating / 2.0m;
+
             return itemDto;
         }
 

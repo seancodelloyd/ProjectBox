@@ -28,6 +28,10 @@
                     }
                 },
                 {
+                    title: "Rating",
+                    data: "rating"
+                },
+                {
                     title: l('Actions'),
                     rowAction: {
                         items:

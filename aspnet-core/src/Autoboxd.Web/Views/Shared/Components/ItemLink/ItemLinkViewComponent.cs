@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace Autoboxd.Web.Components.Item
+namespace Autoboxd.Web.Components.ItemLink
 {
     [ViewComponent(Name = "ItemLink")]
-    public class HeroImageViewComponent : ViewComponent
+    public class ItemLinkViewComponent : ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync(string imageUrl)
         {
