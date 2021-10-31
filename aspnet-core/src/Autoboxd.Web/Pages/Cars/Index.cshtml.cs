@@ -16,6 +16,7 @@ namespace Autoboxd.Web.Pages.Cars
         public string Name { get; set; }
         public string Description { get; set; }
         public int Year { get; set; }
+        public string ImagePath { get; set; }
 
         public void OnGet(string title)
         {
@@ -25,6 +26,7 @@ namespace Autoboxd.Web.Pages.Cars
             Name = item.Name;
             Description = item.Description;
             Year = item.ManufacturedYear;
+            ImagePath = "/download/" + item.Path + ".jpg";
         }
     }
 }

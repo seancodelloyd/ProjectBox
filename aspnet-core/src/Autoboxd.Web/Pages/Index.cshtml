@@ -11,10 +11,8 @@
 @section scripts {
     <abp-script src="/Pages/Index.js" />
 }
-<div class="hero-wrapper">
-    <div class="hero-image"></div>
-    <div class="backdropmask js-backdrop-fade"> </div>
-</div>
+
+@await Component.InvokeAsync("HeroImage", new { imageUrl = "/images/hero.jpg" })
 
 <div class="container home">
     <div class="p-5 text-center">

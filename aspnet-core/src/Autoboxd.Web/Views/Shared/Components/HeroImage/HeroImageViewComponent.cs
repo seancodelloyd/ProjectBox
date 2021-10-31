@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace Autoboxd.Web.Components.Item
+namespace Autoboxd.Web.Components.HeroImage
 {
-    [ViewComponent(Name = "ItemLink")]
+    [ViewComponent(Name = "HeroImage")]
     public class HeroImageViewComponent : ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync(string imageUrl)
         {
-            var model = new ItemLinkViewModel()
+            var model = new HeroImageViewModel()
             {
                 ImageUrl = imageUrl
             };
@@ -17,7 +17,7 @@ namespace Autoboxd.Web.Components.Item
         }
     }
 
-    public class ItemLinkViewModel
+    public class HeroImageViewModel
     {
         public string ImageUrl { get; set; }
     }

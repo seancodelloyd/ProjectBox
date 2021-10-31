@@ -10,6 +10,8 @@ using Volo.Abp.Domain.Entities;
 
 using Autoboxd.Ratings;
 using Autoboxd.Permissions;
+using Volo.Abp.BlobStoring;
+using Autoboxd.Files;
 
 namespace Autoboxd.Items
 {
@@ -22,12 +24,15 @@ namespace Autoboxd.Items
             IItemService
     {
         private readonly IRepository<Rating, Guid> _ratingRepository;
+        private readonly IBlobContainer<FileContainer> _fileContainer;
 
         public ItemService(
             IRepository<Item, Guid> itemRepository,
-            IRepository<Rating, Guid> ratingRepository) : base(itemRepository)
+            IRepository<Rating, Guid> ratingRepository,
+            IBlobContainer<FileContainer> fileContainer) : base(itemRepository)
         {
             _ratingRepository = ratingRepository;
+            _fileContainer = fileContainer;
 
             GetPolicyName = AutoboxdPermissions.Items.Default;
             GetListPolicyName = AutoboxdPermissions.Items.Default;
@@ -51,8 +56,8 @@ namespace Autoboxd.Items
                 throw new EntityNotFoundException(typeof(Item), id);
             }
 
-            var bookDto = ObjectMapper.Map<Item, ItemDto>(queryResult.item);
-            return bookDto;
+            var itemDto = ObjectMapper.Map<Item, ItemDto>(queryResult.item);
+            return itemDto;
         }
 
         public override async Task<PagedResultDto<ItemDto>> GetListAsync(PagedAndSortedResultRequestDto input)
