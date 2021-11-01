@@ -19,8 +19,6 @@ namespace Autoboxd
 
             CreateMap<List, ListDto>();
             CreateMap<CreateUpdateListDto, List>();
-
-            CreateMap<ListItem, ListItemDto>();
         }
     }
 }

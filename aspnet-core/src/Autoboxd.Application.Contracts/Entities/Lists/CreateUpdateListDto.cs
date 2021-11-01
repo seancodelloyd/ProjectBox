@@ -8,7 +8,7 @@ namespace Autoboxd.Lists
     {
         [Required]
         [StringLength(128)]
-        public string Name { get; set; }
+        public string Title { get; set; }
         public List<Guid> Items { get; set; }
 
         [Required]

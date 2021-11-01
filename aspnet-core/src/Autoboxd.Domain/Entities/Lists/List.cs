@@ -8,8 +8,9 @@ namespace Autoboxd.Lists
 {
     public class List : AuditedAggregateRoot<Guid>
     {
-        public List<ListItem> ItemIds { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+
+        public ICollection<ListItem> ListItems { get; set; }
     }
 }
