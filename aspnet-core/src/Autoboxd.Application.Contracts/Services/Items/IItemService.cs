@@ -10,7 +10,7 @@ namespace Autoboxd.Items
         ItemDto,
         Guid,
         PagedAndSortedResultRequestDto,
-        CreateUpdateListDto>
+        CreateUpdateItemDto>
     {
         public Task<ItemDto> GetByPathAsync(string path);
         public Task<IEnumerable<ItemDto>> GetFeatured(int count);

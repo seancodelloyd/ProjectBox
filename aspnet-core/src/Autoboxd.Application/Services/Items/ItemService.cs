@@ -20,7 +20,7 @@ namespace Autoboxd.Items
             ItemDto,
             Guid,
             PagedAndSortedResultRequestDto,
-            CreateUpdateListDto>,
+            CreateUpdateItemDto>,
             IItemService
     {
         private readonly IRepository<Rating, Guid> _ratingRepository;
