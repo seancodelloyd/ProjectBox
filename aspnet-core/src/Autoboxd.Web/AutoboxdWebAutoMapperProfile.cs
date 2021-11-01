@@ -7,7 +7,7 @@ namespace Autoboxd.Web
     {
         public AutoboxdWebAutoMapperProfile()
         {
-            CreateMap<ItemDto, CreateUpdateItemDto>();
+            CreateMap<ItemDto, CreateUpdateListDto>();
         }
     }
 }

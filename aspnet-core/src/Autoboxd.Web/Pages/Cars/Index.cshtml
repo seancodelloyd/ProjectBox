@@ -6,7 +6,7 @@
 <h1>@Model.Name</h1>
 <h3>@Model.Year</h3>
 
-<p>@Model.Description</p>
+<p>@Html.Raw(Model.Description)</p>
 <p>@Model.ItemId</p>
 
 @await Component.InvokeAsync("ItemRating", new { rating = @Model.Rating })

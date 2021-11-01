@@ -1,9 +1,9 @@
 ﻿using System;
-using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.Application.Dtos;
 
 namespace Autoboxd.ListItems
 {
-    public class ListItem : AuditedAggregateRoot<Guid>
+    public class ListItemDto : AuditedEntityDto<Guid>
     {
         public Guid ListId { get; set; }
         public Guid ItemId { get; set; }

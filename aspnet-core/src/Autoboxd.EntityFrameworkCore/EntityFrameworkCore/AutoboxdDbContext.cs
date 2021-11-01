@@ -16,6 +16,9 @@ using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
 using Autoboxd.Items;
 using Autoboxd.Ratings;
+using Autoboxd.Lists;
+using Autoboxd.ListItems;
+
 using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 
 namespace Autoboxd.EntityFrameworkCore
@@ -30,6 +33,7 @@ namespace Autoboxd.EntityFrameworkCore
     {
         public DbSet<Item> Items { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<List> Lists { get; set; }
         
         #region Entities from the modules
         
@@ -97,6 +101,23 @@ namespace Autoboxd.EntityFrameworkCore
                 b.ToTable(AutoboxdConsts.DbTablePrefix + "Ratings", AutoboxdConsts.DbSchema);
                 b.ConfigureByConvention();
                 b.Property(x => x.Value).IsRequired();
+
+                b.HasOne<Item>().WithMany().HasForeignKey(x => x.ItemId).IsRequired();
+            });
+
+            builder.Entity<List>(b =>
+            {
+                b.ToTable(AutoboxdConsts.DbTablePrefix + "Lists", AutoboxdConsts.DbSchema);
+                b.ConfigureByConvention();
+                b.Property(x => x.Title).IsRequired().HasMaxLength(128);
+
+                b.HasMany<ListItem>().WithOne().HasForeignKey(x => x.ListId).IsRequired();
+            });
+
+            builder.Entity<ListItem>(b =>
+            {
+                b.ToTable(AutoboxdConsts.DbTablePrefix + "ListItems", AutoboxdConsts.DbSchema);
+                b.ConfigureByConvention();
 
                 b.HasOne<Item>().WithMany().HasForeignKey(x => x.ItemId).IsRequired();
             });

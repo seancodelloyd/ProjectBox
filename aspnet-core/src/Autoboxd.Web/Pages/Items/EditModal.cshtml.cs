@@ -14,7 +14,7 @@ namespace Autoboxd.Web.Pages.Items
         public Guid Id { get; set; }
 
         [BindProperty]
-        public CreateUpdateItemDto Item { get; set; }
+        public CreateUpdateListDto Item { get; set; }
 
         private readonly IItemService _itemService;
 
@@ -26,7 +26,7 @@ namespace Autoboxd.Web.Pages.Items
         public async Task OnGetAsync()
         {
             var bookDto = await _itemService.GetAsync(Id);
-            Item = ObjectMapper.Map<ItemDto, CreateUpdateItemDto>(bookDto);
+            Item = ObjectMapper.Map<ItemDto, CreateUpdateListDto>(bookDto);
         }
 
         public async Task<IActionResult> OnPostAsync()

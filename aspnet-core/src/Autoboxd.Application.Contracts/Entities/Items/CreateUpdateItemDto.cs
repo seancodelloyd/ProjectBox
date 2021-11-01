@@ -2,7 +2,7 @@
 
 namespace Autoboxd.Items
 {
-    public class CreateUpdateItemDto
+    public class CreateUpdateListDto
     {
         [Required]
         [StringLength(128)]

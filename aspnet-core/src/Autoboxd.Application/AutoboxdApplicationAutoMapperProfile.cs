@@ -10,7 +10,7 @@ namespace Autoboxd
         public AutoboxdApplicationAutoMapperProfile()
         {
             CreateMap<Item, ItemDto>();
-            CreateMap<CreateUpdateItemDto, Item>();
+            CreateMap<CreateUpdateListDto, Item>();
 
             CreateMap<Rating, RatingDto>();
             CreateMap<CreateUpdateRatingDto, Rating>();

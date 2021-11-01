@@ -8,7 +8,7 @@ namespace Autoboxd.Items
     public class CreateModalModel : AutoboxdPageModel
     {
         [BindProperty]
-        public CreateUpdateItemDto Item { get; set; }
+        public CreateUpdateListDto Item { get; set; }
 
         private readonly IItemService _itemService;
 
@@ -19,7 +19,7 @@ namespace Autoboxd.Items
 
         public void OnGet()
         {
-            Item = new CreateUpdateItemDto();
+            Item = new CreateUpdateListDto();
         }
 
         public async Task<IActionResult> OnPostAsync()

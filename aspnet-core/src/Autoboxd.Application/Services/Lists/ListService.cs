@@ -3,17 +3,17 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
-namespace Autoboxd.Ratings
+namespace Autoboxd.Lists
 {
-    public class RatingService : CrudAppService<
-            Rating,
-            RatingDto,
+    public class ListService : CrudAppService<
+            List,
+            ListDto,
             Guid,
             PagedAndSortedResultRequestDto,
-            CreateUpdateRatingDto>,
+            CreateUpdateListDto>,
             IListService
     {
-        public RatingService(IRepository<Rating, Guid> repository) : base(repository)
+        public ListService(IRepository<List, Guid> repository) : base(repository)
         {
 
         }

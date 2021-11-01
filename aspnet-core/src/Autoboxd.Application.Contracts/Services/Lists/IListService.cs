@@ -2,13 +2,13 @@
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
-namespace Autoboxd.Ratings
+namespace Autoboxd.Lists
 {
     public interface IListService : ICrudAppService<
-        RatingDto,
+        ListDto,
         Guid,
         PagedAndSortedResultRequestDto,
-        CreateUpdateRatingDto>
+        CreateUpdateListDto>
     {
     }
 }
