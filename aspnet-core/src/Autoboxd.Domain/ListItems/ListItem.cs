@@ -6,7 +6,7 @@ using Autoboxd.Lists;
 
 namespace Autoboxd.ListItems
 {
-    public class ListItem : AuditedAggregateRoot<Guid>
+    public class ListItem : CreationAuditedEntity<Guid>
     {
         public List List { get; set; }
         public Guid ListId { get; set; }

@@ -34,7 +34,6 @@ namespace Autoboxd.EntityFrameworkCore
         public DbSet<Item> Items { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<List> Lists { get; set; }
-        public DbSet<ListItem> ListItems { get; set; }
         
         #region Entities from the modules
         
@@ -95,6 +94,8 @@ namespace Autoboxd.EntityFrameworkCore
                 b.ToTable(AutoboxdConsts.DbTablePrefix + "Items", AutoboxdConsts.DbSchema);
                 b.ConfigureByConvention();
                 b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+
+                b.HasMany(l => l.ListItems).WithOne(i => i.Item);
             });
 
             builder.Entity<Rating>(b =>

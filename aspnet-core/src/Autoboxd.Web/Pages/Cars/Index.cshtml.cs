@@ -2,6 +2,7 @@ using Autoboxd.Items;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Threading.Tasks;
+using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 
 namespace Autoboxd.Web.Pages.Cars
 {
@@ -20,6 +21,9 @@ namespace Autoboxd.Web.Pages.Cars
         public int Year { get; set; }
         public string ImagePath { get; set; }
         public decimal Rating { get; set; }
+
+        [TextArea]
+        public string Comment { get; set; }
 
         public void OnGet(string title)
         {

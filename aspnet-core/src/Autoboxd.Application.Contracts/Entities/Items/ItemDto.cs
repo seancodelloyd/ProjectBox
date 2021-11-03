@@ -3,7 +3,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Autoboxd.Items
 {
-    public class ItemDto : AuditedEntityDto<Guid>
+    public class ItemDto : ExtensibleFullAuditedEntityDto<Guid>
     {
         public string Name { get; set; }
         public string Path { get; set; }

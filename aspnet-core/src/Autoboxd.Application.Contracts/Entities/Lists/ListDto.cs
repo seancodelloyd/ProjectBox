@@ -6,7 +6,7 @@ using Autoboxd.ListItems;
 
 namespace Autoboxd.Lists
 {
-    public class ListDto : AuditedEntityDto<Guid>
+    public class ListDto : ExtensibleFullAuditedEntityDto<Guid>
     {
         public string Title { get; set; }
         public ICollection<ListItemDto> ListItems { get; set; }

@@ -10,8 +10,6 @@ using Volo.Abp.Domain.Entities;
 
 using Autoboxd.Ratings;
 using Autoboxd.Permissions;
-using Volo.Abp.BlobStoring;
-using Autoboxd.Files;
 
 namespace Autoboxd.Items
 {
@@ -26,9 +24,8 @@ namespace Autoboxd.Items
         private readonly IRepository<Rating, Guid> _ratingRepository;
 
         public ItemAppService(
-            IRepository<Item, Guid> itemRepository,
-            IRepository<Rating, Guid> ratingRepository,
-            IBlobContainer<FileContainer> fileContainer) : base(itemRepository)
+            IItemRepository itemRepository,
+            IRepository<Rating, Guid> ratingRepository) : base(itemRepository)
         {
             _ratingRepository = ratingRepository;
 

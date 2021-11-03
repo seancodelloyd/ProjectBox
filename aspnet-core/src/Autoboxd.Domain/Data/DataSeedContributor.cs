@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Data;
+using Volo.Abp.Guids;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 
 using Autoboxd.Items;
 using Autoboxd.Ratings;
-using System.Collections.Generic;
 
 namespace Autoboxd.Data
 {
@@ -15,15 +16,18 @@ namespace Autoboxd.Data
     {
         private readonly IRepository<Item, Guid> _itemRepository;
         private readonly IRepository<Rating, Guid> _ratingRepository;
+        private readonly IGuidGenerator _guidGenerator;
 
         private List<Item> Items;
 
         public DataSeedContributor(
             IRepository<Item, Guid> itemRepository,
-            IRepository<Rating, Guid> ratingRepository)
+            IRepository<Rating, Guid> ratingRepository,
+            IGuidGenerator guidGenerator)
         {
             _itemRepository = itemRepository;
             _ratingRepository = ratingRepository;
+            _guidGenerator = guidGenerator;
 
             Items = new List<Item>();
         }
@@ -52,106 +56,118 @@ namespace Autoboxd.Data
             }
         }
 
-        private static List<Item> GetSeedItems()
+        private List<Item> GetSeedItems()
         {
             var items = new List<Item>
             {
                 new Item
-                {
-                    Name = "Ferrari F50",
-                    Path = "ferrari-f50-1995",
-                    Description = "A very fast car",
-                    ManufacturedYear = 1995,
-                    IsFeatured = true
-                },
+                (
+                    _guidGenerator.Create(),
+                    "Ferrari F50",
+                    "ferrari-f50-1995",
+                    "A very fast car",
+                    1995,
+                    true
+                ),
                 new Item
-                {
-                    Name = "Jaguar E-Type",
-                    Path = "jaguar-e-type",
-                    Description = "A very fast car",
-                    ManufacturedYear = 1995,
-                    IsFeatured = false
-                },
+                (
+                    _guidGenerator.Create(),
+                    "Jaguar E-Type",
+                    "jaguar-e-type",
+                    "A very fast car",
+                    1995,
+                    false
+                ),
                 new Item
-                {
-                    Name = "Chevrolet Corvette",
-                    Path = "chevrolet-corvette",
-                    Description = "A very fast car",
-                    ManufacturedYear = 1995,
-                    IsFeatured = false
-                },
+                (
+                    _guidGenerator.Create(),
+                    "Chevrolet Corvette",
+                    "chevrolet-corvette",
+                    "A very fast car",
+                    1995,
+                    false
+                ),
                 new Item
-                {
-                    Name = "Lamborghini Miura",
-                    Path = "lamborghini-miura",
-                    Description = "A very fast car",
-                    ManufacturedYear = 1995,
-                    IsFeatured = false
-                },
+                (
+                    _guidGenerator.Create(),
+                    "Lamborghini Miura",
+                    "lamborghini-miura",
+                    "A very fast car",
+                    1995,
+                    false
+                ),
                 new Item
-                {
-                    Name = "Porsche 911",
-                    Path = "porsche-911",
-                    Description = "A very fast car",
-                    ManufacturedYear = 1995,
-                    IsFeatured = true
-                },
+                (
+                    _guidGenerator.Create(),
+                    "Porsche 911",
+                    "porsche-911",
+                    "A very fast car",
+                    1995,
+                    true
+                ),
                 new Item
-                {
-                    Name = "Rolls-Royce Dawn Drophead",
-                    Path = "rolls-royce-dawn-drophead",
-                    Description = "A very fast car",
-                    ManufacturedYear = 1995,
-                    IsFeatured = false
-                },
+                (
+                    _guidGenerator.Create(),
+                    "Rolls-Royce Dawn Drophead",
+                    "rolls-royce-dawn-drophead",
+                    "A very fast car",
+                    1995,
+                    false
+                ),
                 new Item
-                {
-                    Name = "Mercedes SL 300 Gullwing",
-                    Path = "mercedes-sl-300-gullwing",
-                    Description = "A very fast car",
-                    ManufacturedYear = 1995,
-                    IsFeatured = true
-                },
+                (
+                    _guidGenerator.Create(),
+                    "Mercedes SL 300 Gullwing",
+                    "mercedes-sl-300-gullwing",
+                    "A very fast car",
+                    1995,
+                    true
+                ),
                 new Item
-                {
-                    Name = "Ferrari 250 GTO",
-                    Path = "ferrari-250-gto",
-                    Description = "A very fast car",
-                    ManufacturedYear = 1995,
-                    IsFeatured = false
-                },
+                (
+                    _guidGenerator.Create(),
+                    "Ferrari 250 GTO",
+                    "ferrari-250-gto",
+                    "A very fast car",
+                    1995,
+                    false
+                ),
                 new Item
-                {
-                    Name = "Aston Martin DB4",
-                    Path = "aston-martin-db4",
-                    Description = "A very fast car",
-                    ManufacturedYear = 1995,
-                    IsFeatured = true
-                },
+                (
+                    _guidGenerator.Create(),
+                    "Aston Martin DB4",
+                    "aston-martin-db4",
+                    "A very fast car",
+                    1995,
+                    true
+                ),
                 new Item
-                {
-                    Name = "BMW 3.0 CSL",
-                    Path = "bmw-30-csl",
-                    Description = "A very fast car",
-                    ManufacturedYear = 1995,
-                    IsFeatured = false
-                },
+                (
+                    _guidGenerator.Create(),
+                    "BMW 3.0 CSL",
+                    "bmw-30-csl",
+                    "A very fast car",
+                    1995,
+                    false
+                ),
                 new Item
-                {
-                    Name = "Acura NSX",
-                    Path = "acura-nsx",
-                    Description = "A very fast car",
-                    ManufacturedYear = 1995,
-                    IsFeatured = false
-                },
+                (
+                    _guidGenerator.Create(),
+                    "Acura NSX",
+                    "acura-nsx",
+                    "A very fast car",
+                    1995,
+                    false
+                ),
                 new Item
-                {
-                    Name = "VW Beetle",
-                    Path = "vw-beetle",
-                    Description = "A very fast car",
-                    ManufacturedYear = 1995,
-                    IsFeatured = true
-                }
+                (
+                    _guidGenerator.Create(),
+                    "VW Beetle",
+                    "vw-beetle",
+                    "A very fast car",
+                    1995,
+                    true
+                )
             };
 
             return items;

@@ -62,6 +62,7 @@
         </div>
         <div class="col-lg-5">
             @await Component.InvokeAsync("ContentSection", new { title = "Popular lists", link = "https://www.google.com" })
+            @await Component.InvokeAsync("ListGrid", new { listId = new Guid("B7474FB6-9C7B-EABA-8692-39FFF7DA21B2") })
         </div>
     </div>
 </div>
