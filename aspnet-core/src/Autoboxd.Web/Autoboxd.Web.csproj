@@ -57,6 +57,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\Articles\" />
+    <Folder Include="Pages\Reviews\" />
+    <Folder Include="Pages\Lists\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

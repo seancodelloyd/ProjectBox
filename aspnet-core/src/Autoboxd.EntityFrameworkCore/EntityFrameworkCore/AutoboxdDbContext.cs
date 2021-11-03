@@ -34,6 +34,7 @@ namespace Autoboxd.EntityFrameworkCore
         public DbSet<Item> Items { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<List> Lists { get; set; }
+        public DbSet<ListItem> ListItems { get; set; }
         
         #region Entities from the modules
         
@@ -110,6 +111,8 @@ namespace Autoboxd.EntityFrameworkCore
                 b.ToTable(AutoboxdConsts.DbTablePrefix + "Lists", AutoboxdConsts.DbSchema);
                 b.ConfigureByConvention();
                 b.Property(x => x.Title).IsRequired().HasMaxLength(128);
+
+                b.HasMany(l => l.ListItems).WithOne(i => i.List);
             });
 
             builder.Entity<ListItem>(b =>
@@ -119,8 +122,8 @@ namespace Autoboxd.EntityFrameworkCore
 
                 b.HasKey(li => new { li.ItemId, li.ListId });
 
-                b.HasOne<Item>(li => li.Item).WithMany(i => i.ListItems).HasForeignKey(li => li.ItemId);
-                b.HasOne<List>(li => li.List).WithMany(l => l.ListItems).HasForeignKey(li => li.ItemId);
+                b.HasOne(li => li.Item).WithMany(i => i.ListItems).HasForeignKey(li => li.ItemId);
+                b.HasOne(li => li.List).WithMany(l => l.ListItems).HasForeignKey(li => li.ListId);
             });
         }
     }

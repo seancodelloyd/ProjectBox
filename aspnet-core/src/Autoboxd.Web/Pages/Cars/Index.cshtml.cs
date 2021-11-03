@@ -7,11 +7,11 @@ namespace Autoboxd.Web.Pages.Cars
 {
     public class IndexModel : PageModel
     {
-        public readonly IItemService _itemService;
+        public readonly IItemAppService _itemAppService;
 
-        public IndexModel(IItemService itemService)
+        public IndexModel(IItemAppService itemAppService)
         {
-            _itemService = itemService;
+            _itemAppService = itemAppService;
         }
 
         public string Name { get; set; }
@@ -23,7 +23,7 @@ namespace Autoboxd.Web.Pages.Cars
 
         public void OnGet(string title)
         {
-            Task<ItemDto> task = Task.Run(() => _itemService.GetByPathAsync(title));
+            Task<ItemDto> task = Task.Run(() => _itemAppService.GetByPathAsync(title));
             var item = task.Result;
 
             ItemId = item.Id;

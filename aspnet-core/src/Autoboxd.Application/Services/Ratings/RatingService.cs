@@ -5,15 +5,15 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Autoboxd.Ratings
 {
-    public class RatingService : CrudAppService<
+    public class RatingAppService : CrudAppService<
             Rating,
             RatingDto,
             Guid,
             PagedAndSortedResultRequestDto,
             CreateUpdateRatingDto>,
-            IListService
+            IListAppService
     {
-        public RatingService(IRepository<Rating, Guid> repository) : base(repository)
+        public RatingAppService(IRepository<Rating, Guid> repository) : base(repository)
         {
 
         }

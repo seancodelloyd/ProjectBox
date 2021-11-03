@@ -6,7 +6,7 @@ using Volo.Abp.Application.Services;
 
 namespace Autoboxd.Items
 {
-    public interface IItemService : ICrudAppService<
+    public interface IItemAppService : ICrudAppService<
         ItemDto,
         Guid,
         PagedAndSortedResultRequestDto,

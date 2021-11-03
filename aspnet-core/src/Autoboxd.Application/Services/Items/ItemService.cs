@@ -15,24 +15,22 @@ using Autoboxd.Files;
 
 namespace Autoboxd.Items
 {
-    public class ItemService : CrudAppService<
+    public class ItemAppService : CrudAppService<
             Item,
             ItemDto,
             Guid,
             PagedAndSortedResultRequestDto,
             CreateUpdateItemDto>,
-            IItemService
+            IItemAppService
     {
         private readonly IRepository<Rating, Guid> _ratingRepository;
-        private readonly IBlobContainer<FileContainer> _fileContainer;
 
-        public ItemService(
+        public ItemAppService(
             IRepository<Item, Guid> itemRepository,
             IRepository<Rating, Guid> ratingRepository,
             IBlobContainer<FileContainer> fileContainer) : base(itemRepository)
         {
             _ratingRepository = ratingRepository;
-            _fileContainer = fileContainer;
 
             GetPolicyName = AutoboxdPermissions.Items.Default;
             GetListPolicyName = AutoboxdPermissions.Items.Default;

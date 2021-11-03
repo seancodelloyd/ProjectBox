@@ -4,15 +4,17 @@ using Autoboxd.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
 namespace Autoboxd.Migrations
 {
     [DbContext(typeof(AutoboxdDbContext))]
-    partial class AutoboxdDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211101170102_Added_List_Entity_Link")]
+    partial class Added_List_Entity_Link
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,8 +114,6 @@ namespace Autoboxd.Migrations
                         .HasColumnName("LastModifierId");
 
                     b.HasKey("ItemId", "ListId");
-
-                    b.HasIndex("ListId");
 
                     b.ToTable("AppListItems");
                 });
@@ -2199,7 +2199,7 @@ namespace Autoboxd.Migrations
 
                     b.HasOne("Autoboxd.Lists.List", "List")
                         .WithMany("ListItems")
-                        .HasForeignKey("ListId")
+                        .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

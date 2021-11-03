@@ -10,11 +10,11 @@ namespace Autoboxd.Items
         [BindProperty]
         public CreateUpdateItemDto Item { get; set; }
 
-        private readonly IItemService _itemService;
+        private readonly IItemAppService _itemAppService;
 
-        public CreateModalModel(IItemService itemService)
+        public CreateModalModel(IItemAppService itemAppService)
         {
-            _itemService = itemService;
+            _itemAppService = itemAppService;
         }
 
         public void OnGet()
@@ -24,7 +24,7 @@ namespace Autoboxd.Items
 
         public async Task<IActionResult> OnPostAsync()
         {
-            await _itemService.CreateAsync(Item);
+            await _itemAppService.CreateAsync(Item);
             return NoContent();
         }
     }

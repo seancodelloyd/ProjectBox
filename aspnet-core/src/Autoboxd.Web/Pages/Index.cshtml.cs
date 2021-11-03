@@ -6,18 +6,18 @@ namespace Autoboxd.Web.Pages
 {
     public class IndexModel : AutoboxdPageModel
     {
-        public readonly IItemService _itemService;
+        public readonly IItemAppService _itemAppService;
 
         public IEnumerable<ItemDto> FeaturedItems { get; set; }
 
-        public IndexModel(IItemService itemService)
+        public IndexModel(IItemAppService itemAppService)
         {
-            _itemService = itemService;
+            _itemAppService = itemAppService;
         }
 
         public void OnGet()
         {
-            Task<IEnumerable<ItemDto>> task = Task.Run(() => _itemService.GetFeatured(4));
+            Task<IEnumerable<ItemDto>> task = Task.Run(() => _itemAppService.GetFeatured(4));
 
             FeaturedItems = task.Result;
         }

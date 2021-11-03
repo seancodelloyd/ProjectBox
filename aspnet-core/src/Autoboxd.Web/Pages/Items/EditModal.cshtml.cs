@@ -16,22 +16,22 @@ namespace Autoboxd.Web.Pages.Items
         [BindProperty]
         public CreateUpdateItemDto Item { get; set; }
 
-        private readonly IItemService _itemService;
+        private readonly IItemAppService _itemAppService;
 
-        public EditModalModel(IItemService itemService)
+        public EditModalModel(IItemAppService itemAppService)
         {
-            _itemService = itemService;
+            _itemAppService = itemAppService;
         }
 
         public async Task OnGetAsync()
         {
-            var itemDto = await _itemService.GetAsync(Id);
+            var itemDto = await _itemAppService.GetAsync(Id);
             Item = ObjectMapper.Map<ItemDto, CreateUpdateItemDto>(itemDto);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            await _itemService.UpdateAsync(Id, Item);
+            await _itemAppService.UpdateAsync(Id, Item);
             return NoContent();
         }
     }
