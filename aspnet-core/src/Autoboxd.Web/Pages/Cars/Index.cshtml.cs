@@ -34,7 +34,7 @@ namespace Autoboxd.Web.Pages.Cars
             Name = item.Name;
             Description = item.Description;
             Year = item.ManufacturedYear;
-            ImagePath = "/download/" + item.Path;
+            ImagePath = "/download/" + item.Path + ".jpg";
             Rating = item.Rating;
         }
     }

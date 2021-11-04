@@ -15,7 +15,6 @@ namespace Autoboxd.Ratings
     {
         public RatingAppService(IRepository<Rating, Guid> repository) : base(repository)
         {
-
         }
     }
 }

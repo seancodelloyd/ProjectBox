@@ -14,5 +14,6 @@ namespace Autoboxd.Items
     {
         public Task<ItemDto> GetByPathAsync(string path);
         public Task<IEnumerable<ItemDto>> GetFeatured(int count);
+        public Task<IEnumerable<ItemDto>> GetRecentlyReviewed(int count);
     }
 }

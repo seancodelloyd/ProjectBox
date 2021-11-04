@@ -33,6 +33,24 @@ namespace Autoboxd.Web.Menus
                 administration.TryRemoveMenuItem(TenantManagementMenuNames.GroupName);
             }
 
+            context.Menu.AddItem(new ApplicationMenuItem(
+                "ItemStore.Items",
+                l["Menu:Cars"],
+                url: "/Items"
+            ));
+
+            context.Menu.AddItem(new ApplicationMenuItem(
+                "ItemStore.Items",
+                l["Menu:Lists"],
+                url: "/Items"
+            ));
+
+            context.Menu.AddItem(new ApplicationMenuItem(
+                "ItemStore.Items",
+                l["Menu:Articles"],
+                url: "/Items"
+            ));
+
             administration.SetSubItemOrder(IdentityMenuNames.GroupName, 2);
             administration.SetSubItemOrder(SettingManagementMenuNames.GroupName, 3);
 

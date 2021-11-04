@@ -159,6 +159,28 @@ namespace Autoboxd.Items
             return itemDtos;
         }
 
+        public async Task<IEnumerable<ItemDto>> GetRecentlyReviewed(int count)
+        {
+            var queryable = await Repository.GetQueryableAsync();
+
+            var query = from item in queryable
+                        select new { item };
+
+            query = query
+                .Skip(0)
+                .Take(count);
+
+            var queryResult = await AsyncExecuter.ToListAsync(query);
+
+            var itemDtos = queryResult.Select(x =>
+            {
+                var itemDto = ObjectMapper.Map<Item, ItemDto>(x.item);
+                return itemDto;
+            }).ToList();
+
+            return itemDtos;
+        }
+
         private static string NormalizeSorting(string sorting)
         {
             if (sorting.IsNullOrEmpty())

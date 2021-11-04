@@ -30,9 +30,9 @@
     @await Component.InvokeAsync("ContentSection", new { title = "Featured cars", link = "https://www.google.com" })
     <div class="showcase">
         <div class="row p-3">
-            @foreach (var featuredItem in Model.FeaturedItems)
+            @foreach (var item in Model.FeaturedItems)
             {
-                <div class="col-lg-3 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + featuredItem.Path, path = featuredItem.Path })</div>
+                <div class="col-lg-3 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-small.jpg", path = item.Path })</div>
             }
         </div>
     </div>
@@ -40,18 +40,10 @@
     @await Component.InvokeAsync("ContentSection", new { title = "Recently reviewed", link = "https://www.google.com" })
     <div class="grid">
         <div class="row p-3">
-            <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car1.jpg" })</div>
-            <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car2.jpg" })</div>
-            <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car3.jpg" })</div>
-            <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car4.jpg" })</div>
-            <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car1.jpg" })</div>
-            <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car2.jpg" })</div>
-            <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car3.jpg" })</div>
-            <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car4.jpg" })</div>
-            <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car1.jpg" })</div>
-            <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car2.jpg" })</div>
-            <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car3.jpg" })</div>
-            <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/images/car4.jpg" })</div>
+            @foreach (var item in Model.RecentlyReviewed)
+            {
+                <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-tiny.jpg", path = item.Path })</div>
+            }
         </div>
     </div>
 
@@ -62,7 +54,7 @@
         </div>
         <div class="col-lg-5">
             @await Component.InvokeAsync("ContentSection", new { title = "Popular lists", link = "https://www.google.com" })
-            @await Component.InvokeAsync("ListGrid", new { listId = new Guid("B7474FB6-9C7B-EABA-8692-39FFF7DA21B2") })
+            @await Component.InvokeAsync("ListGrid", new { listId = new Guid("C3D683B1-00F8-5777-95B4-39FFF911CEED") })
         </div>
     </div>
 </div>

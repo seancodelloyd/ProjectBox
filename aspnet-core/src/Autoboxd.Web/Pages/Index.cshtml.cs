@@ -9,17 +9,17 @@ namespace Autoboxd.Web.Pages
         public readonly IItemAppService _itemAppService;
 
         public IEnumerable<ItemDto> FeaturedItems { get; set; }
+        public IEnumerable<ItemDto> RecentlyReviewed { get; set; }
 
         public IndexModel(IItemAppService itemAppService)
         {
             _itemAppService = itemAppService;
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Task<IEnumerable<ItemDto>> task = Task.Run(() => _itemAppService.GetFeatured(4));
-
-            FeaturedItems = task.Result;
+            FeaturedItems = await _itemAppService.GetFeatured(4);
+            RecentlyReviewed = await _itemAppService.GetRecentlyReviewed(12);
         }
     }
 }

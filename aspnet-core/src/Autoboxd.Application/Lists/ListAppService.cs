@@ -71,6 +71,11 @@ namespace Autoboxd.Lists
             return listDto;
         }
 
+        // TODO: Get Lists for user
+        // TODO: Get Lists for item (sort by popularity)
+        // TODO: Get popular lists
+        // TODO: Get recently created lists
+
         private static string NormalizeSorting(string sorting)
         {
             if (sorting.IsNullOrEmpty())

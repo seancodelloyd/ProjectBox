@@ -7,55 +7,57 @@
 
 @await Component.InvokeAsync("HeroImage", new { imageUrl = @Model.ImagePath })
 
-<h1>@Model.Name</h1>
-<h3>@Model.Year</h3>
+<div class="content" style="margin-top:360px">
+    <h1>@Model.Name</h1>
+    <h3>@Model.Year</h3>
 
-<p>@Html.Raw(Model.Description)</p>
-<p id="itemId">@Model.ItemId</p>
+    <p>@Html.Raw(Model.Description)</p>
+    <p id="itemId">@Model.ItemId</p>
 
-@await Component.InvokeAsync("ItemRating", new { rating = @Model.Rating })
+    @await Component.InvokeAsync("ItemRating", new { rating = @Model.Rating })
 
-@await Component.InvokeAsync("ContentSection", new { title = "120 comments" })
+    @await Component.InvokeAsync("ContentSection", new { title = "120 comments" })
 
-<abp-input asp-for="@Model.Comment" label="Add a comment" />
+    <abp-input asp-for="@Model.Comment" label="Add a comment" />
 
-<a abp-button="Primary" class="register-button">Post comment</a>
-<a abp-button="Secondary" id="addToList">Add to list</a>
+    <a abp-button="Primary" class="register-button">Post comment</a>
+    <a abp-button="Secondary" id="addToList">Add to list</a>
 
-<!-- Bit of padding for now -->
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+    <!-- Bit of padding for now -->
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+</div>

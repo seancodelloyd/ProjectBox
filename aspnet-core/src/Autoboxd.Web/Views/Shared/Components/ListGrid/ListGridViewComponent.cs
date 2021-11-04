@@ -25,7 +25,7 @@ namespace Autoboxd.Web.Components.ListGrid
                 .Take(4)
                 .ToList();
                 
-            var imagePaths = images.Select(li => li.Item.Path)
+            var imagePaths = images.Select(li => li.Item.Path + "-tiny.jpg")
                 .ToList();
 
             var model = new ListGridViewModel()
