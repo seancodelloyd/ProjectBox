@@ -24,7 +24,7 @@ namespace Autoboxd.Lists
         {
             var dbSet = await GetDbSetAsync();
 
-            return dbSet.Include(x => x.ListItems);
+            return dbSet.Include(x => x.ListItems).ThenInclude(li => li.Item);
         }
     }
 }

@@ -8,7 +8,6 @@ namespace Autoboxd.ListItems
 {
     public class ListItem : CreationAuditedEntity<Guid>
     {
-        public List List { get; set; }
         public Guid ListId { get; set; }
 
         public Item Item { get; set; }

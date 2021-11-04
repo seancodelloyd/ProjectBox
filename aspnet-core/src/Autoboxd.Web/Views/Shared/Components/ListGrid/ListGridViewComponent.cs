@@ -20,10 +20,12 @@ namespace Autoboxd.Web.Components.ListGrid
         {
             var listDto = await _listAppService.GetAsync(listId);
 
-            var imagePaths = listDto.ListItems
+            var images = listDto.ListItems
                 .OrderBy(li => li.CreationTime)
                 .Take(4)
-                .Select(li => li.Item.Path)
+                .ToList();
+                
+            var imagePaths = images.Select(li => li.Item.Path)
                 .ToList();
 
             var model = new ListGridViewModel()
@@ -34,7 +36,7 @@ namespace Autoboxd.Web.Components.ListGrid
                 ImagePaths = imagePaths
             };
 
-            return View("Index", listDto);
+            return View("Index", model);
         }
     }
 

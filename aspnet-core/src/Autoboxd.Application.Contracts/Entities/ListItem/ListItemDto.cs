@@ -8,7 +8,6 @@ namespace Autoboxd.ListItems
 {
     public class ListItemDto : AuditedEntityDto<Guid>
     {
-        public ListDto List { get;set; }
         public Guid ListId { get; set; }
 
         public ItemDto Item { get; set; }

@@ -112,8 +112,6 @@ namespace Autoboxd.EntityFrameworkCore
                 b.ToTable(AutoboxdConsts.DbTablePrefix + "Lists", AutoboxdConsts.DbSchema);
                 b.ConfigureByConvention();
                 b.Property(x => x.Title).IsRequired().HasMaxLength(128);
-
-                b.HasMany(l => l.ListItems).WithOne(i => i.List);
             });
 
             builder.Entity<ListItem>(b =>
@@ -124,7 +122,6 @@ namespace Autoboxd.EntityFrameworkCore
                 b.HasKey(li => new { li.ItemId, li.ListId });
 
                 b.HasOne(li => li.Item).WithMany(i => i.ListItems).HasForeignKey(li => li.ItemId);
-                b.HasOne(li => li.List).WithMany(l => l.ListItems).HasForeignKey(li => li.ListId);
             });
         }
     }
