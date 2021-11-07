@@ -32,17 +32,21 @@
         <div class="row p-3">
             @foreach (var item in Model.FeaturedItems)
             {
-                <div class="col-lg-3 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-small.jpg", path = item.Path })</div>
+                <div class="col-lg-3 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-small.jpg", path = item.Path, name = item.Name })</div>
             }
         </div>
     </div>
 
     @await Component.InvokeAsync("ContentSection", new { title = "Recently reviewed", link = "https://www.google.com" })
     <div class="grid">
-        <div class="row p-3">
+        <div class="row pt-0 pl-3 pr-3 pb-4">
             @foreach (var item in Model.RecentlyReviewed)
             {
-                <div class="col-lg-1 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-tiny.jpg", path = item.Path })</div>
+                <div class="col-lg-1 p-1">
+                    <abp-button abp-tooltip="@item.Name" class="button">
+                        @await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-tiny.jpg", path = item.Path })
+                    </abp-button>
+                </div>
             }
         </div>
     </div>

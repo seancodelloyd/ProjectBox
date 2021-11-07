@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
 
 using Autoboxd.ListItems;
+using Volo.Abp.Identity;
 
 namespace Autoboxd.Lists
 {
@@ -11,5 +12,6 @@ namespace Autoboxd.Lists
         public string Title { get; set; }
         public ICollection<ListItemDto> ListItems { get; set; }
         public string Description { get; set; }
+        public IdentityUserDto Creator { get; set; }
     }
 }

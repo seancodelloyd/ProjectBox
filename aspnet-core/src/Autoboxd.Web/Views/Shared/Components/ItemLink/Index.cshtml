@@ -2,6 +2,12 @@
 
 <div class="component item-link shadow">
     <a href="/Cars/@Model.Path">
-        <img src="@Model.ImageUrl" />
+        <div class="imageContainer">
+            <img class="image" src="@Model.ImageUrl" />
+        </div>    
     </a>
+    @if (!Model.Name.IsNullOrWhiteSpace())
+    {
+        <div class="name">@Model.Name</div>
+    }
 </div>

@@ -1,20 +1,33 @@
 ﻿@model Autoboxd.Web.Components.ListGrid.ListGridViewModel
 
-<div class="component list-grid">
+<div class="component list-grid container">
     <div class="row">
         <div class="col-2">
             <div class="row" style="margin-top: 15px">
-                @foreach (var path in Model.ImagePaths)
-                {
-                <div class="col-12 p-1" style="margin-top: -15px">
-                    <img class="card shadow" src="/download/@path" style="width: 100%; height: 100%; border-radius:5px;" />
-                </div>
-                }
+                <a href="www.google.com">
+                    @foreach (var path in Model.ImagePaths.Select((value, i) => (value, i)))
+                    {
+                        var index = 100 - path.i;
+
+                        <div class="col-12 p-1" style="margin-top: -19px; z-index: @index ">
+                            <img class="card" src="/download/@path.value" style="width: 100%; height: 100%; border-radius: 5px; box-shadow: 0 0.1rem 0.1rem rgb(0 0 0 / 45%)" />
+                        </div>
+                    }
+                </a>
+                <abp-button class="col-5 offset-1 p-1 text-center like" abp-tooltip="Like this list">
+                    <i class="fa fa-heart"></i>
+                </abp-button>
+                <abp-button class="col-5 p-1 text-center share" abp-tooltip="Share this list">
+                    <i class="fa fa-share-alt"></i>
+                </abp-button>
             </div>
         </div>
         <div class="col-10">
-            <h3>@Model.Title</h3>
-            <p>@Html.Raw(Model.Description)</p>
-        </div>
+            <a href="www.google.com">
+                <h4>@Model.Title</h4>
+            </a>
+            <small>Created by: <strong>@Model.Author</strong></small>
+            <div class="description">@Html.Raw(Model.Description)</div>
+</div>
     </div>
 </div>

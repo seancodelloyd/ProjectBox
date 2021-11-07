@@ -1,8 +1,8 @@
 ﻿@model Autoboxd.Web.Components.ReviewDetails.ReviewDetailsViewModel
 
-<div class="component reviewDetails">
+<div class="component reviewDetails container">
     <div class="row">
-        <div class="review-image col-4">
+        <div class="review-image col-4 p-1">
             @await Component.InvokeAsync("ItemLink", new { imageUrl = Model.ImageUrl })
         </div>
         <div class="review-content col-8">

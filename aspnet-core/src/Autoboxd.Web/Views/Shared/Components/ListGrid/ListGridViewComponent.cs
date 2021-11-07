@@ -33,7 +33,8 @@ namespace Autoboxd.Web.Components.ListGrid
                 Path = "/List/", // TODO: Add path here!
                 Title = listDto.Title,
                 Description = listDto.Description,
-                ImagePaths = imagePaths
+                ImagePaths = imagePaths,
+                Author = listDto.Creator.UserName
             };
 
             return View("Index", model);
@@ -46,5 +47,6 @@ namespace Autoboxd.Web.Components.ListGrid
         public string Path { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Author { get; set; }
     }
 }

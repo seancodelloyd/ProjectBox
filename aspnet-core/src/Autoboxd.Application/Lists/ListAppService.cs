@@ -8,6 +8,8 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
 using Autoboxd.ListItems;
+using Volo.Abp.Identity;
+using Volo.Abp.Domain.Entities;
 
 namespace Autoboxd.Lists
 {
@@ -19,8 +21,34 @@ namespace Autoboxd.Lists
             CreateUpdateListDto>,
             IListAppService
     {
-        public ListAppService(IListRepository repository) : base(repository)
+        private readonly IRepository<IdentityUser, Guid> _identityUserRepository;
+
+        public ListAppService(IListRepository repository, IRepository<IdentityUser, Guid> identityUserRepository) : base(repository)
         {
+            _identityUserRepository = identityUserRepository;
+        }
+
+        public override async Task<ListDto> GetAsync(Guid id)
+        {
+            var queryable = await Repository.WithDetailsAsync();
+
+            var query = from list in queryable
+                        join creator in _identityUserRepository on list.CreatorId equals creator.Id
+                        where list.Id == id
+                        select new { list, creator };
+
+            var queryResult = await AsyncExecuter.FirstOrDefaultAsync(query);
+            if (queryResult == null)
+            {
+                throw new EntityNotFoundException(typeof(List), id);
+            }
+
+            var listDto = ObjectMapper.Map<List, ListDto>(queryResult.list);
+            var creatorDto = ObjectMapper.Map<IdentityUser, IdentityUserDto>(queryResult.creator);
+
+            listDto.Creator = creatorDto;
+
+            return listDto;
         }
 
         public override async Task<PagedResultDto<ListDto>> GetListAsync(PagedAndSortedResultRequestDto input)
@@ -28,7 +56,8 @@ namespace Autoboxd.Lists
             var queryable = await Repository.WithDetailsAsync();
 
             var query = from list in queryable
-                        select new { list };
+                        join user in _identityUserRepository on list.CreatorId equals user.Id
+                        select new { list, user };
 
             query = query
                 .OrderBy(NormalizeSorting(input.Sorting))
@@ -40,6 +69,10 @@ namespace Autoboxd.Lists
             var listDtos = queryResult.Select(x =>
             {
                 var listDto = ObjectMapper.Map<List, ListDto>(x.list);
+                var userDto = ObjectMapper.Map<IdentityUser, IdentityUserDto>(x.user);
+
+                listDto.Creator = userDto;
+
                 return listDto;
             }).ToList();
 
