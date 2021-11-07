@@ -7,7 +7,8 @@ using Volo.Abp.Domain.Entities;
 
 using System.Collections.Generic;
 using System.Linq.Dynamic.Core;
-
+using Volo.Abp.Identity;
+using Volo.Abp.Domain.Repositories;
 
 namespace Autoboxd.Reviews
 {
@@ -19,8 +20,11 @@ namespace Autoboxd.Reviews
             CreateUpdateReviewDto>,
             IReviewAppService
     {
-        public ReviewAppService(IReviewRepository repository) : base(repository)
+        private readonly IRepository<IdentityUser, Guid> _identityUserRepository;
+
+        public ReviewAppService(IReviewRepository repository, IRepository<IdentityUser, Guid> identityUserRepository) : base(repository)
         {
+            _identityUserRepository = identityUserRepository;
         }
 
         public override async Task<ReviewDto> GetAsync(Guid id)
@@ -46,7 +50,8 @@ namespace Autoboxd.Reviews
             var queryable = await Repository.WithDetailsAsync();
 
             var query = from review in queryable
-                        select new { review };
+                        join user in _identityUserRepository on review.CreatorId equals user.Id
+                        select new { review, user };
 
             query = query
                 .OrderBy(NormalizeSorting(input.Sorting))
@@ -58,6 +63,10 @@ namespace Autoboxd.Reviews
             var reviewDtos = queryResult.Select(x =>
             {
                 var reviewDto = ObjectMapper.Map<Review, ReviewDto>(x.review);
+                var userDto = ObjectMapper.Map<IdentityUser, IdentityUserDto>(x.user);
+
+                reviewDto.Creator = userDto;
+
                 return reviewDto;
             }).ToList();
 

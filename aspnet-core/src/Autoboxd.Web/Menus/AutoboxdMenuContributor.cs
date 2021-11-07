@@ -34,27 +34,27 @@ namespace Autoboxd.Web.Menus
             }
 
             context.Menu.AddItem(new ApplicationMenuItem(
-                "ItemStore.Items",
+                "Autoboxd.Items",
                 l["Menu:Cars"],
-                url: "/Items"
+                url: "/Cars/All"
             ));
 
             context.Menu.AddItem(new ApplicationMenuItem(
-                "ItemStore.Lists",
+                "Autoboxd.Lists",
                 l["Menu:Lists"],
-                url: "/Items"
+                url: "/Lists/All"
             ));
 
             context.Menu.AddItem(new ApplicationMenuItem(
-                "ItemStore.Articles",
+                "Autoboxd.Articles",
                 l["Menu:Articles"],
-                url: "/Items"
+                url: "/Articles/All"
             ));
 
             context.Menu.AddItem(new ApplicationMenuItem(
-                "ItemStore.Reviews",
+                "Autoboxd.Reviews",
                 l["Menu:Reviews"],
-                url: "/Items"
+                url: "/Reviews/All"
             ));
 
             administration.SetSubItemOrder(IdentityMenuNames.GroupName, 2);

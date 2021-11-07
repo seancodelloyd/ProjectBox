@@ -23,7 +23,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Themes\Basic\Components\Footer\Default.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Themes\Basic\Components\Brand\Default.cshtml" />
+    <None Include="Themes\Basic\Components\Footer\Default.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,9 +62,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Articles\" />
-    <Folder Include="Pages\Reviews\" />
-    <Folder Include="Pages\Lists\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

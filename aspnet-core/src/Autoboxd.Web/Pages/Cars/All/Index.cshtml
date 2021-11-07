@@ -1,7 +1,15 @@
 ﻿@page
-@model Autoboxd.Web.Pages.Cars.List.IndexModel
+@model Autoboxd.Web.Pages.Cars.All.IndexModel
 @section scripts
 {
-    <abp-script src="/Pages/Cars/Index.cshtml.js" />
+    <abp-script src="/Pages/Cars/All/Index.cshtml.js" />
 }
-<div>Hello</div>
+
+<div class="showcase">
+    <div class="row p-3">
+        @foreach (var item in Model.Items)
+        {
+        <div class="col-lg-3 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-small.jpg", path = item.Path, name = item.Name })</div>
+        }
+    </div>
+</div>

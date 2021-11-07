@@ -6,58 +6,89 @@
 }
 
 @await Component.InvokeAsync("HeroImage", new { imageUrl = @Model.ImagePath })
+<div class="page cars">
+    <div class="content">
+        <div class="row">
+            <div class="col-3">
+                <div class="d-none" id="itemId">@Model.ItemId</div>
+                <abp-dropdown>
+                    <abp-dropdown-button button-type="Primary" icon-type="FontAwesome" icon="plus" text="Add to list" />
+                    <abp-dropdown-menu>
+                        @foreach (var list in Model.Lists)
+                        {
+                            <abp-dropdown-item id="@list.Id" class="addToList">@list.Title</abp-dropdown-item>
+                        }
+                    </abp-dropdown-menu>
+                </abp-dropdown>
 
-<div class="content" style="margin-top:360px">
-    <h1>@Model.Name</h1>
-    <h3>@Model.Year</h3>
+                <abp-button-toolbar>
+                    <abp-button-group class="mr-2">
+                        <abp-button icon-type="FontAwesome" icon="star"></abp-button>
+                        <abp-button icon-type="FontAwesome" icon="star"></abp-button>
+                        <abp-button icon-type="FontAwesome" icon="star"></abp-button>
+                        <abp-button icon-type="FontAwesome" icon="star"></abp-button>
+                        <abp-button icon-type="FontAwesome" icon="star"></abp-button>
+                    </abp-button-group>
+                </abp-button-toolbar>
+            </div>
+            <div class="col-9">
+                <div class="title">
+                    <h1>@Model.Name</h1>
+                    <h3>@Model.Year</h3>
+                </div>
 
-    <p>@Html.Raw(Model.Description)</p>
-    <p id="itemId">@Model.ItemId</p>
+                <p>@Html.Raw(Model.Description)</p>
 
-    @await Component.InvokeAsync("ItemRating", new { rating = @Model.Rating })
+                @await Component.InvokeAsync("ContentSection", new { title = "0 comments" })
 
-    @await Component.InvokeAsync("ContentSection", new { title = "120 comments" })
+                <div class="comments">
+                    <div class="comment row">
+                        <div class="col-3">Sean</div>
+                        <div class="col-9">This is my comment and I stand by it</div>
+                    </div>
+                </div>
 
-    <abp-input asp-for="@Model.Comment" label="Add a comment" />
+                <abp-input asp-for="@Model.Comment" label="Add a comment" />
 
-    <a abp-button="Primary" class="register-button">Post comment</a>
-    <a abp-button="Secondary" id="addToList">Add to list</a>
-
-    <!-- Bit of padding for now -->
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+                <a abp-button="Primary" id="postComment">Post comment</a>
+            </div>
+        </div>
+        <!-- Bit of padding for now -->
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
 </div>

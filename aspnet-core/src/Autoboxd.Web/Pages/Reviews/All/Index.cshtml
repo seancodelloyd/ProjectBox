@@ -1,0 +1,21 @@
+﻿@page
+@model Autoboxd.Web.Pages.Reviews.All.IndexModel
+@section scripts
+{
+    <abp-script src="/Pages/Reviews/All/Index.cshtml.js" />
+}
+<div class="row">
+    @foreach (var review in Model.Reviews)
+    {
+    <div class="col-lg-6">
+        @await Component.InvokeAsync("ReviewDetails", new
+        {
+           imageUrl = "/download/" + review.Item.Path + "-small.jpg",
+           title = review.Title,
+           description = review.Description,
+           path = review.Item.Path,
+           author = review.Creator?.UserName
+       })
+    </div>
+        }
+</div>

@@ -62,7 +62,7 @@ namespace Autoboxd.Files
                     graph.DrawImage(image, 0, 0, width.Value, height);
 
                     var imgCon = new ImageConverter();
-                    return (byte[])imgCon.ConvertTo(image, typeof(byte[]));
+                    return (byte[])imgCon.ConvertTo(thumbnail, typeof(byte[]));
                 }
             }
 

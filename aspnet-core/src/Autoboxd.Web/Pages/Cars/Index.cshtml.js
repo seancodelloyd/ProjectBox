@@ -1,13 +1,30 @@
 ﻿$(function () {
-    var addToListButton = $("#addToList");
+    var addToListButton = $(".addToList");
 
     addToListButton.on("click", function (event) {
         event.preventDefault();
-        debugger;
 
-        var listId = 'C3D683B1-00F8-5777-95B4-39FFF911CEED';
+        var listId = event.currentTarget.id;
         var itemId = $("#itemId").text();
 
-        autoboxd.lists.list.addItem(listId, itemId);
+        autoboxd.lists.list
+            .addItem(listId, itemId)
+            .then(function (result) {
+                toastr.success("Successfully added to the list")
+            });;
+    });
+
+    var postCommentButton = $("#postComment");
+
+    postCommentButton.on("click", function (event) {
+        event.preventDefault();
+
+        var itemId = $("#itemId").text();
+
+        //autoboxd.lists.list
+        //    .addItem(listId, itemId)
+        //    .then(function (result) {
+        //        toastr.success("Successfully added to the list")
+        //    });;
     });
 });

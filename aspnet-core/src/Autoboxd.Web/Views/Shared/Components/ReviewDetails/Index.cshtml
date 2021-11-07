@@ -11,7 +11,8 @@
             </div>
             <div class="review-details"></div>
             <div class="review-content">
-                @Model.Description
+                <small>Created by: <a href="/"><strong>@Model.Author</strong></a></small>
+                <div>@Model.Description</div>
             </div>
             <div class="review-favourites"></div>
         </div>

@@ -16,16 +16,15 @@ namespace Autoboxd.Web.Components.ListGrid
             _listAppService = listAppService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(Guid listId)
+        public async Task<IViewComponentResult> InvokeAsync(ListDto listDto)
         {
-            var listDto = await _listAppService.GetAsync(listId);
-
             var images = listDto.ListItems
                 .OrderBy(li => li.CreationTime)
                 .Take(4)
                 .ToList();
                 
-            var imagePaths = images.Select(li => li.Item.Path + "-tiny.jpg")
+            var imagePaths = images
+                .Select(li => li.Item.Path + "-tiny.jpg")
                 .ToList();
 
             var model = new ListGridViewModel()

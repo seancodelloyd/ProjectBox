@@ -1,21 +1,20 @@
+using Autoboxd.Reviews;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 
-using Autoboxd.Items;
-
-namespace Autoboxd.Web.Pages.Cars.All
+namespace Autoboxd.Web.Pages.Reviews.All
 {
     public class IndexModel : PageModel
     {
-        public readonly IItemAppService _itemAppService;
+        public readonly IReviewAppService _reviewAppService;
 
-        public IEnumerable<ItemDto> Items { get; set; }
+        public IEnumerable<ReviewDto> Reviews { get; set; }
 
-        public IndexModel(IItemAppService itemAppService)
+        public IndexModel(IReviewAppService reviewAppService)
         {
-            _itemAppService = itemAppService;
+            _reviewAppService = reviewAppService;
         }
 
         public async Task OnGetAsync()
@@ -25,8 +24,8 @@ namespace Autoboxd.Web.Pages.Cars.All
                 MaxResultCount = 1000 // TODO: Add paging later
             };
 
-            var items = await _itemAppService.GetListAsync(reviewInput);
-            Items = items.Items;
+            var reviews = await _reviewAppService.GetListAsync(reviewInput);
+            Reviews = reviews.Items;
         }
     }
 }

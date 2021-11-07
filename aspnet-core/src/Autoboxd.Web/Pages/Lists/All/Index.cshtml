@@ -1,0 +1,14 @@
+﻿@page
+@model Autoboxd.Web.Pages.Lists.All.IndexModel
+@section scripts
+{
+    <abp-script src="/Pages/Lists/All/Index.cshtml.js" />
+}
+<div class="row">
+    @foreach (var list in Model.Lists)
+    {
+        <div class="col-lg-6">
+            @await Component.InvokeAsync("ListGrid", new { listDto = list })
+        </div>
+    }
+</div>
