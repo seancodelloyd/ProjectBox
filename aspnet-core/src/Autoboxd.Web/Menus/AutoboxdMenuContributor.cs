@@ -40,14 +40,20 @@ namespace Autoboxd.Web.Menus
             ));
 
             context.Menu.AddItem(new ApplicationMenuItem(
-                "ItemStore.Items",
+                "ItemStore.Lists",
                 l["Menu:Lists"],
                 url: "/Items"
             ));
 
             context.Menu.AddItem(new ApplicationMenuItem(
-                "ItemStore.Items",
+                "ItemStore.Articles",
                 l["Menu:Articles"],
+                url: "/Items"
+            ));
+
+            context.Menu.AddItem(new ApplicationMenuItem(
+                "ItemStore.Reviews",
+                l["Menu:Reviews"],
                 url: "/Items"
             ));
 

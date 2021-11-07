@@ -62,7 +62,6 @@ namespace Autoboxd.Items
             var query = from item in queryable
                         select new { item };
 
-            //Paging
             query = query
                 .OrderBy(NormalizeSorting(input.Sorting))
                 .Skip(input.SkipCount)

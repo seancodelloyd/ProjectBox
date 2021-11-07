@@ -5,6 +5,7 @@ using Volo.Abp.Domain.Entities.Auditing;
 using JetBrains.Annotations;
 
 using Autoboxd.ListItems;
+using Autoboxd.Reviews;
 
 namespace Autoboxd.Items
 {
@@ -15,6 +16,7 @@ namespace Autoboxd.Items
         public string Description { get; set; }
         public int ManufacturedYear { get; set; }
         public bool IsFeatured { get; set; }
+        public List<Review> Reviews { get; set; }
 
         public ICollection<ListItem> ListItems { get; set; }
 
@@ -31,6 +33,7 @@ namespace Autoboxd.Items
             Description = description;
             ManufacturedYear = manufacturedYear;
             IsFeatured = isFeatured;
+            Reviews = new List<Review>();
         }
 
         private Item() { }

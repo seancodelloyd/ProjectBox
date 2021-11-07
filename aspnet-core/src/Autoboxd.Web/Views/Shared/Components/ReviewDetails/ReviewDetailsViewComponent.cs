@@ -6,13 +6,14 @@ namespace Autoboxd.Web.Components.ReviewDetails
     [ViewComponent(Name = "ReviewDetails")]
     public class ReviewDetailsViewComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(string imageUrl, string title, string description)
+        public async Task<IViewComponentResult> InvokeAsync(string imageUrl, string title, string description, string path)
         {
             var model = new ReviewDetailsViewModel()
             {
                 ImageUrl = imageUrl,
                 Title = title,
-                Description = description
+                Description = description,
+                Path = path
             };
 
             return View("Index", model);
@@ -24,5 +25,6 @@ namespace Autoboxd.Web.Components.ReviewDetails
         public string ImageUrl { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Path { get; set; }
     }
 }

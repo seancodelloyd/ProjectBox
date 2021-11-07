@@ -18,6 +18,7 @@ using Autoboxd.Items;
 using Autoboxd.Ratings;
 using Autoboxd.Lists;
 using Autoboxd.ListItems;
+using Autoboxd.Reviews;
 
 using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 
@@ -34,6 +35,7 @@ namespace Autoboxd.EntityFrameworkCore
         public DbSet<Item> Items { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<List> Lists { get; set; }
+        public DbSet<Review> Reviews { get; set; }
         
         #region Entities from the modules
         
@@ -122,6 +124,15 @@ namespace Autoboxd.EntityFrameworkCore
                 b.HasKey(li => new { li.ItemId, li.ListId });
 
                 b.HasOne(li => li.Item).WithMany(i => i.ListItems).HasForeignKey(li => li.ItemId);
+            });
+
+            builder.Entity<Review>(b =>
+            {
+                b.ToTable(AutoboxdConsts.DbTablePrefix + "Reviews", AutoboxdConsts.DbSchema);
+                b.ConfigureByConvention();
+                b.Property(x => x.Title).IsRequired().HasMaxLength(128);
+
+                b.HasOne(li => li.Item).WithMany(i => i.Reviews).HasForeignKey(li => li.ItemId);
             });
         }
     }

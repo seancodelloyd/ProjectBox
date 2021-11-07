@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
@@ -58,12 +56,13 @@ namespace Autoboxd.Files
 
                 var height = (width.Value * image.Height) / image.Width;
 
-                var thumbnail = image.GetThumbnailImage(width.Value, height, null, IntPtr.Zero);
-
-                using (var thumbnailStream = new MemoryStream())
+                using (Image thumbnail = new Bitmap(image, width.Value, height))
                 {
-                    thumbnail.Save(thumbnailStream, ImageFormat.Jpeg);
-                    return thumbnailStream.ToArray();
+                    Graphics graph = Graphics.FromImage(thumbnail);
+                    graph.DrawImage(image, 0, 0, width.Value, height);
+
+                    var imgCon = new ImageConverter();
+                    return (byte[])imgCon.ConvertTo(image, typeof(byte[]));
                 }
             }
 

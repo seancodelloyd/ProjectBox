@@ -2,7 +2,7 @@
 @model Autoboxd.Web.Pages.Cars.IndexModel
 @section scripts
 {
-    <abp-script src="/Pages/Cars/Index.js" />
+    <abp-script src="/Pages/Cars/Index.cshtml.js" />
 }
 
 @await Component.InvokeAsync("HeroImage", new { imageUrl = @Model.ImagePath })

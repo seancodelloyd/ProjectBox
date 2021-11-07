@@ -4,6 +4,7 @@ using Autoboxd.Items;
 using Autoboxd.Ratings;
 using Autoboxd.Lists;
 using Autoboxd.ListItems;
+using Autoboxd.Reviews;
 
 namespace Autoboxd
 {
@@ -22,6 +23,9 @@ namespace Autoboxd
 
             CreateMap<ListItem, ListItemDto>();
             CreateMap<CreateUpdateListItemDto, ListItem>();
+
+            CreateMap<Review, ReviewDto>();
+            CreateMap<CreateUpdateReviewDto, Review>();
         }
     }
 }

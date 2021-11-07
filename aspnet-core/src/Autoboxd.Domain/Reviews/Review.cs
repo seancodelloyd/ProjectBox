@@ -11,5 +11,6 @@ namespace Autoboxd.Reviews
         public string Description { get; set; }
         public Rating Rating { get; set; }
         public Item Item { get; set; }
+        public Guid ItemId { get; set; }
     }
 }
