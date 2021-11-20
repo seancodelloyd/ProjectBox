@@ -41,4 +41,11 @@
                 myWidgetManager.refresh();
             });
     });
+
+    var createAndAddModal = new abp.ModalManager(abp.appPath + 'Lists/CreateAndAddModal' + '?itemId=' + itemId.innerText);
+
+    $("#createNewList").on("click", function (e) {
+        e.preventDefault();
+        createAndAddModal.open();
+    });
 });

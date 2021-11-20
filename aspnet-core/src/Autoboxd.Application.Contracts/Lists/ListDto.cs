@@ -10,6 +10,7 @@ namespace Autoboxd.Lists
     public class ListDto : ExtensibleFullAuditedEntityDto<Guid>
     {
         public string Title { get; set; }
+        public string Path { get; set; }
         public ICollection<ListItemDto> ListItems { get; set; }
         public string Description { get; set; }
         public IdentityUserDto Creator { get; set; }

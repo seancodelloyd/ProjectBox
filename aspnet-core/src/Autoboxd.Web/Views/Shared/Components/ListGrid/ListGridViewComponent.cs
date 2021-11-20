@@ -11,6 +11,7 @@ namespace Autoboxd.Web.Components.ListGrid
     public class ListGridViewComponent : ViewComponent
     {
         private readonly IListAppService _listAppService;
+
         public ListGridViewComponent(IListAppService listAppService)
         {
             _listAppService = listAppService;
@@ -29,7 +30,7 @@ namespace Autoboxd.Web.Components.ListGrid
 
             var model = new ListGridViewModel()
             {
-                Path = "/List/", // TODO: Add path here!
+                FullPath = "/Lists/" + listDto.Creator.UserName.ToLower() + "/" + listDto.Path,
                 Title = listDto.Title,
                 Description = listDto.Description,
                 ImagePaths = imagePaths,
@@ -43,7 +44,7 @@ namespace Autoboxd.Web.Components.ListGrid
     public class ListGridViewModel
     {
         public List<string> ImagePaths { get; set; }
-        public string Path { get; set; }
+        public string FullPath { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Author { get; set; }

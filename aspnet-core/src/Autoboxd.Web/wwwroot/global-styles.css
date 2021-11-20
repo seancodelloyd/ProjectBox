@@ -302,3 +302,7 @@ footer {
 .dropdown-menu .dropdown-item:hover {
     background-color: var(--background-color-highlight);
 }
+
+.dropdown-divider {
+    border-color: var(--background-color-highlight);
+}

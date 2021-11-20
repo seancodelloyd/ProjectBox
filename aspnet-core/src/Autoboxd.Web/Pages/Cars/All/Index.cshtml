@@ -12,7 +12,7 @@
     <div class="row p-3">
         @foreach (var item in Model.Items)
         {
-            <div class="col-lg-3 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-small.jpg", path = item.Path, name = item.Name })</div>
+            <div class="col-lg-3 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-small.jpg", path = "/Cars/" + item.Path, name = item.Name })</div>
         }
     </div>
 </div>

@@ -10,6 +10,7 @@ namespace Autoboxd.Lists
     public class List : FullAuditedAggregateRoot<Guid>
     {
         public string Title { get; set; }
+        public string Path { get; set; }
         public string Description { get; set; }
         public ICollection<ListItem> ListItems { get; set; }
 
@@ -18,6 +19,9 @@ namespace Autoboxd.Lists
             Title = title;
             Description = description;
             ListItems = new List<ListItem>();
+            Path = title
+                .ToKebabCase()
+                .Replace(" ", "-");
         }
 
         protected List() { }
