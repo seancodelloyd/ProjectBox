@@ -118,7 +118,6 @@ a {
     border: 2px solid var(--brand-color);
     margin: -2px;
     width: calc(100% + 4px);
-    height: calc(100% + 4px);
     color: var(--light);
     text-decoration: none;
 }
