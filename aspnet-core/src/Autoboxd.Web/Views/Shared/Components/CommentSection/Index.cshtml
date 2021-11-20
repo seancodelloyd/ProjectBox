@@ -1,0 +1,16 @@
+﻿@model Autoboxd.Web.Components.CommentSection.CommentSectionViewModel
+
+<div class="component comment-section">
+    @await Component.InvokeAsync("ContentSection", new { title = Model.Comments.Count().ToString() + (Model.Comments.Count() == 1 ? " comment" : " comments") })
+
+    <div class="comments container">
+        @foreach (var comment in Model.Comments)
+        {
+        <div class="comment row">
+            <div class="col-2">@comment.Creator.UserName</div>
+            <div class="col-10">@comment.Value</div>
+        </div>
+        }
+    </div>
+    <br/>
+</div>

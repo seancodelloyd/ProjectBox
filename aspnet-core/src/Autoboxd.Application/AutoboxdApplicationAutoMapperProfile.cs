@@ -5,11 +5,12 @@ using Autoboxd.Ratings;
 using Autoboxd.Lists;
 using Autoboxd.ListItems;
 using Autoboxd.Reviews;
+using Autoboxd.Comments;
 
 namespace Autoboxd
 {
     public class AutoboxdApplicationAutoMapperProfile : Profile
-    {
+    {   
         public AutoboxdApplicationAutoMapperProfile()
         {
             CreateMap<Item, ItemDto>();
@@ -26,6 +27,9 @@ namespace Autoboxd
 
             CreateMap<Review, ReviewDto>();
             CreateMap<CreateUpdateReviewDto, Review>();
+
+            CreateMap<Comment, CommentDto>();
+            CreateMap<CreateUpdateCommentDto, Comment>();
         }
     }
 }

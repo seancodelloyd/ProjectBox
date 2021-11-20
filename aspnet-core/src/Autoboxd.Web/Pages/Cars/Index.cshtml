@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-3">
                 <div class="d-none" id="itemId">@Model.ItemId</div>
-                <abp-dropdown>
+                <abp-dropdown class="addToListButton">
                     <abp-dropdown-button button-type="Primary" icon-type="FontAwesome" icon="plus" text="Add to list" />
                     <abp-dropdown-menu>
                         @foreach (var list in Model.Lists)
@@ -21,7 +21,7 @@
                     </abp-dropdown-menu>
                 </abp-dropdown>
 
-                <abp-button-toolbar>
+                <abp-button-toolbar class="rating">
                     <abp-button-group class="mr-2">
                         <abp-button icon-type="FontAwesome" icon="star"></abp-button>
                         <abp-button icon-type="FontAwesome" icon="star"></abp-button>
@@ -36,17 +36,11 @@
                     <h1>@Model.Name</h1>
                     <h3>@Model.Year</h3>
                 </div>
-
-                <p>@Html.Raw(Model.Description)</p>
-
-                @await Component.InvokeAsync("ContentSection", new { title = "0 comments" })
-
-                <div class="comments">
-                    <div class="comment row">
-                        <div class="col-3">Sean</div>
-                        <div class="col-9">This is my comment and I stand by it</div>
-                    </div>
+                <div class="card pl-3 pr-3">
+                    <p>@Html.Raw(Model.Description)</p>
                 </div>
+
+                @await Component.InvokeAsync("CommentSection", new { comments = Model.Comments })
 
                 <abp-input asp-for="@Model.Comment" label="Add a comment" />
 

@@ -4,6 +4,18 @@
 {
     <abp-script src="/Pages/Lists/All/Index.cshtml.js" />
 }
+
+@await Component.InvokeAsync("ContentSection", new { title = "My lists" })
+<div class="row">
+    @foreach (var list in Model.Lists)
+    {
+        <div class="col-lg-6">
+            @await Component.InvokeAsync("ListGrid", new { listDto = list })
+        </div>
+    }
+</div>
+
+@await Component.InvokeAsync("ContentSection", new { title = "Popular lists" })
 <div class="row">
     @foreach (var list in Model.Lists)
     {

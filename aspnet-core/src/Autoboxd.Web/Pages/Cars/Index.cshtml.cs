@@ -1,3 +1,4 @@
+using Autoboxd.Comments;
 using Autoboxd.Items;
 using Autoboxd.Lists;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,11 +14,13 @@ namespace Autoboxd.Web.Pages.Cars
     {
         public readonly IItemAppService _itemAppService;
         public readonly IListAppService _listAppService;
+        public readonly ICommentAppService _commentAppService;
 
-        public IndexModel(IItemAppService itemAppService, IListAppService listAppService)
+        public IndexModel(IItemAppService itemAppService, IListAppService listAppService, ICommentAppService commentAppService)
         {
             _itemAppService = itemAppService;
             _listAppService = listAppService;
+            _commentAppService = commentAppService;
         }
 
         public string Name { get; set; }
@@ -27,6 +30,8 @@ namespace Autoboxd.Web.Pages.Cars
         public string ImagePath { get; set; }
         public decimal Rating { get; set; }
         public IEnumerable<ListDto> Lists { get; set; }
+        public IEnumerable<CommentDto> Comments { get; set; }
+        public long CommentCount { get; set; }
 
         [TextArea]
         public string Comment { get; set; }
@@ -50,6 +55,16 @@ namespace Autoboxd.Web.Pages.Cars
             ImagePath = "/download/" + item.Path + ".jpg";
             Rating = item.Rating;
             Lists = lists.Items;
+
+            var commentInput = new PagedAndSortedResultRequestDto()
+            {
+                MaxResultCount = 10
+            };
+
+            var comments = await _commentAppService.GetForEntity(commentInput, item.Id);
+
+            Comments = comments.Items;
+            CommentCount = comments.TotalCount;
         }
     }
 }

@@ -148,6 +148,7 @@ a {
     position: absolute;
     right: 0;
     bottom: 0;
+    width: 100%;
 }
 
 .showcase .component.item-link .imageContainer {
@@ -249,6 +250,17 @@ a {
     border-radius: 5px;
 }
 
+.component.comment-section {
+    margin-top: 20px;
+}
+
+.component.comment-section .comment.row {
+    padding: 10px 0;
+}
+
+/*.component.comment-section .comment.row:nth-child(2n+1) {
+    background-color: var(--background-color-highlight-subtle);
+}*/
 
 .modal-content {
     background-color: var(--background-color-light);
@@ -263,4 +275,30 @@ footer {
 
 .page.cars .content{
     margin-top: 450px;
+}
+
+.addToListButton {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.rating .btn-group{
+    width: 100%;
+}
+
+.rating .fa-star {
+    color: var(--yellow);
+}
+
+.dropdown-menu {
+    background-color: var(--background-color-light);
+}
+
+.dropdown-menu .dropdown-item {
+    color: white;
+}
+
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: var(--background-color-highlight);
 }
