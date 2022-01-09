@@ -63,7 +63,8 @@ namespace Autoboxd.Data
                 new Item
                 (
                     _guidGenerator.Create(),
-                    "Ferrari F50",
+                    "Ferrari",
+                    "F50",
                     "ferrari-f50-1995",
                     "A very fast car",
                     1995,
@@ -72,7 +73,8 @@ namespace Autoboxd.Data
                 new Item
                 (
                     _guidGenerator.Create(),
-                    "Jaguar E-Type",
+                    "Jaguar",
+                    "E-Type",
                     "jaguar-e-type",
                     "A very fast car",
                     1995,
@@ -81,7 +83,8 @@ namespace Autoboxd.Data
                 new Item
                 (
                     _guidGenerator.Create(),
-                    "Chevrolet Corvette",
+                    "Chevrolet",
+                    "Corvette",
                     "chevrolet-corvette",
                     "A very fast car",
                     1995,
@@ -90,7 +93,8 @@ namespace Autoboxd.Data
                 new Item
                 (
                     _guidGenerator.Create(),
-                    "Lamborghini Miura",
+                    "Lamborghini",
+                    "Miura",
                     "lamborghini-miura",
                     "A very fast car",
                     1995,
@@ -99,7 +103,8 @@ namespace Autoboxd.Data
                 new Item
                 (
                     _guidGenerator.Create(),
-                    "Porsche 911",
+                    "Porsche",
+                    "911",
                     "porsche-911",
                     "A very fast car",
                     1995,
@@ -108,7 +113,8 @@ namespace Autoboxd.Data
                 new Item
                 (
                     _guidGenerator.Create(),
-                    "Rolls-Royce Dawn Drophead",
+                    "Rolls-Royce",
+                    "Dawn Drophead",
                     "rolls-royce-dawn-drophead",
                     "A very fast car",
                     1995,
@@ -117,7 +123,8 @@ namespace Autoboxd.Data
                 new Item
                 (
                     _guidGenerator.Create(),
-                    "Mercedes SL 300 Gullwing",
+                    "Mercedes",
+                    "SL 300 Gullwing",
                     "mercedes-sl-300-gullwing",
                     "A very fast car",
                     1995,
@@ -126,7 +133,8 @@ namespace Autoboxd.Data
                 new Item
                 (
                     _guidGenerator.Create(),
-                    "Ferrari 250 GTO",
+                    "Ferrari",
+                    "250 GTO",
                     "ferrari-250-gto",
                     "A very fast car",
                     1995,
@@ -135,7 +143,8 @@ namespace Autoboxd.Data
                 new Item
                 (
                     _guidGenerator.Create(),
-                    "Aston Martin DB4",
+                    "Aston Martin",
+                    "DB4",
                     "aston-martin-db4",
                     "A very fast car",
                     1995,
@@ -144,7 +153,8 @@ namespace Autoboxd.Data
                 new Item
                 (
                     _guidGenerator.Create(),
-                    "BMW 3.0 CSL",
+                    "BMW",
+                    "3.0 CSL",
                     "bmw-30-csl",
                     "A very fast car",
                     1995,
@@ -153,7 +163,8 @@ namespace Autoboxd.Data
                 new Item
                 (
                     _guidGenerator.Create(),
-                    "Acura NSX",
+                    "Acura",
+                    "NSX",
                     "acura-nsx",
                     "A very fast car",
                     1995,
@@ -162,7 +173,8 @@ namespace Autoboxd.Data
                 new Item
                 (
                     _guidGenerator.Create(),
-                    "VW Beetle",
+                    "Volkswagen",
+                    "Beetle",
                     "vw-beetle",
                     "A very fast car",
                     1995,

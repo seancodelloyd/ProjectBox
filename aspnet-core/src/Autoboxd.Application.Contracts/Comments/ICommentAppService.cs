@@ -11,6 +11,7 @@ namespace Autoboxd.Comments
         PagedAndSortedResultRequestDto,
         CreateUpdateCommentDto>
     {
+        public Task<PagedResultDto<CommentDto>> GetAll(PagedAndSortedResultRequestDto input);
         public Task<PagedResultDto<CommentDto>> GetForEntity(PagedAndSortedResultRequestDto input, Guid entityId);
     }
 }

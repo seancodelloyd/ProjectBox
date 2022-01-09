@@ -12,6 +12,7 @@ namespace Autoboxd.Items
     public class Item : FullAuditedAggregateRoot<Guid>
     {
         public string Name { get; set; }
+        public string Brand { get; set; }
         public string Path { get; set; }
         public string Description { get; set; }
         public int ManufacturedYear { get; set; }
@@ -22,6 +23,7 @@ namespace Autoboxd.Items
 
         public Item(
             Guid id,
+            [NotNull] string brand,
             [NotNull] string name,
             [NotNull] string path,
             [NotNull] string description,
@@ -30,6 +32,7 @@ namespace Autoboxd.Items
         {
             ChangeName(name);
             Path = path;
+            Brand = brand;
             Description = description;
             ManufacturedYear = manufacturedYear;
             IsFeatured = isFeatured;

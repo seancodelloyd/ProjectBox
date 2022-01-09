@@ -9,6 +9,9 @@ namespace Autoboxd.Items
         public string Name { get; set; }
 
         [Required]
+        public string Brand { get; set; }
+
+        [Required]
         // TODO: Needs to be unique
         public string Path { get; set; }
 

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using Volo.Abp.Application.Dtos;
 
 using Autoboxd.Items;
 using Autoboxd.Reviews;
 using Autoboxd.Lists;
+using Autoboxd.Comments;
 
 namespace Autoboxd.Web.Pages
 {
@@ -13,17 +15,24 @@ namespace Autoboxd.Web.Pages
         public readonly IItemAppService _itemAppService;
         public readonly IReviewAppService _reviewAppService;
         public readonly IListAppService _listAppService;
+        public readonly ICommentAppService _commentAppService;
 
         public IEnumerable<ItemDto> FeaturedItems { get; set; }
         public IEnumerable<ItemDto> RecentlyReviewed { get; set; }
         public IEnumerable<ReviewDto> PopularReviews { get; set; }
         public IEnumerable<ListDto> PopularLists { get; set; }
 
-        public IndexModel(IItemAppService itemAppService, IReviewAppService reviewAppService, IListAppService listAppService)
+        public IEnumerable<CommentDto> Comments { get; set; }
+
+        public IndexModel(IItemAppService itemAppService, 
+            IReviewAppService reviewAppService, 
+            IListAppService listAppService,
+            ICommentAppService commentAppService)
         {
             _itemAppService = itemAppService;
             _reviewAppService = reviewAppService;
             _listAppService = listAppService;
+            _commentAppService = commentAppService;
         }
 
         public async Task OnGetAsync()
@@ -48,6 +57,17 @@ namespace Autoboxd.Web.Pages
 
             var popularLists = await _listAppService.GetListAsync(popularListInput);
             PopularLists = popularLists.Items;
+
+            var latestCommentInput = new PagedAndSortedResultRequestDto()
+            {
+                Sorting = "CreationTime",
+                MaxResultCount = 10
+            };
+
+            var comments = await _commentAppService.GetAll(latestCommentInput);
+            Comments = comments.Items
+                .Where(c => c.Creator != null)
+                .ToList();
         }
     }
 }

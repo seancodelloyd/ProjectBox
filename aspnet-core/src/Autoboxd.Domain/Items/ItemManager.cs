@@ -16,6 +16,7 @@ namespace Autoboxd.Items
 
         public async Task<Item> CreateAsync(
             [NotNull] string name,
+            [NotNull] string brand,
             [NotNull] string path,
             [NotNull] string description,
             int manufacturedYear = 0,
@@ -33,6 +34,7 @@ namespace Autoboxd.Items
 
             return new Item(
                 GuidGenerator.Create(),
+                brand,
                 name,
                 path,
                 description,

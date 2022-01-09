@@ -8,13 +8,14 @@ using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
 namespace Autoboxd.Web.Components.CommentSection
 {
     [Widget(RefreshUrl = "/Widgets/Comments")]
-    public class CommentSectionViewComponent : AbpViewComponent
+    public class CommentBoxViewComponent : AbpViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(IEnumerable<CommentDto> comments)
+        public async Task<IViewComponentResult> InvokeAsync(IEnumerable<CommentDto> comments, bool showHeader = true)
         {
             var model = new CommentSectionViewModel()
             {
-                Comments = comments
+                Comments = comments,
+                ShowHeader = showHeader
             };
 
             return View("Index", model);
@@ -24,5 +25,6 @@ namespace Autoboxd.Web.Components.CommentSection
     public class CommentSectionViewModel
     {
         public IEnumerable<CommentDto> Comments { get; set; }
+        public bool ShowHeader { get; set; }
     }
 }

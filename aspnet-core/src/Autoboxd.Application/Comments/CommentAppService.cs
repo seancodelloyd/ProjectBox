@@ -24,6 +24,39 @@ namespace Autoboxd.Comments
             _identityUserRepository = identityUserRepository;
         }
 
+        public async Task<PagedResultDto<CommentDto>> GetAll(PagedAndSortedResultRequestDto input)
+        {
+            var queryable = await Repository.GetQueryableAsync();
+
+            var query = from comment in queryable
+                        join creator in _identityUserRepository on comment.CreatorId equals creator.Id
+                        select new { comment, creator };
+
+            var count = query.Count();
+
+            query = query
+                .OrderBy(NormalizeSorting(input.Sorting))
+                .Skip(input.SkipCount)
+                .Take(input.MaxResultCount);
+
+            var queryResult = await AsyncExecuter.ToListAsync(query);
+
+            var commentDtos = queryResult.Select(x =>
+            {
+                var commentDto = ObjectMapper.Map<Comment, CommentDto>(x.comment);
+                var creatorDto = ObjectMapper.Map<IdentityUser, IdentityUserDto>(x.creator);
+
+                commentDto.Creator = creatorDto;
+
+                return commentDto;
+            }).ToList();
+
+            return new PagedResultDto<CommentDto>(
+                count,
+                commentDtos
+            );
+        }
+
         public async Task<PagedResultDto<CommentDto>> GetForEntity(PagedAndSortedResultRequestDto input, Guid entityId)
         {
             var queryable = await Repository.GetQueryableAsync();

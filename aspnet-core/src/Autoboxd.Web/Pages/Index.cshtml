@@ -33,52 +33,10 @@
             <h1>Welcome back @CurrentUser.UserName</h1>
         </div>
     }
-
-    @await Component.InvokeAsync("ContentSection", new { title = "Featured cars", link = "/cars/all" })
-    <div class="showcase">
-        <div class="row p-3">
-            @foreach (var item in Model.FeaturedItems)
-            {
-                <div class="col-lg-3 col-sm-6 col-12 p-1">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-small.jpg", path = "/Cars/" + item.Path, name = item.Name })</div>
-            }
-        </div>
-    </div>
-
-    @await Component.InvokeAsync("ContentSection", new { title = "Recently reviewed", link = "/reviews/all" })
-    <div class="grid">
-        <div class="row pt-0 pl-3 pr-3 pb-4">
-            @foreach (var item in Model.RecentlyReviewed)
-            {
-                <div class="col-lg-1 col-sm-2 col-3 p-1">
-                    <abp-button abp-tooltip="@item.Name" class="button">
-                        @await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-tiny.jpg", path = "/Cars/" + item.Path })
-                    </abp-button>
-                </div>
-            }
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-7">
-            @await Component.InvokeAsync("ContentSection", new { title = "Popular reviews", link = "/reviews/all" })
-            @foreach (var review in Model.PopularReviews)
-            {
-                @await Component.InvokeAsync("ReviewDetails", new
-                {
-                   imageUrl = "/download/" + review.Item.Path + "-small.jpg",
-                   title = review.Title,
-                   description = review.Description,
-                   path = "/reviews/user/review-name",  // TODO: Change this
-                   author = review.Creator?.UserName
-                })
-            }
-        </div>
-        <div class="col-lg-5">
-            @await Component.InvokeAsync("ContentSection", new { title = "Popular lists", link = "/lists/all" })
-            @foreach (var list in Model.PopularLists)
-            {
-                @await Component.InvokeAsync("ListGrid", new { listDto = list })
-            }
-        </div>
+    <div class="col-6">
+        @await Component.InvokeAsync("CommentBox", new
+        {
+            comment = Model.Comments.First()
+        })
     </div>
 </div>

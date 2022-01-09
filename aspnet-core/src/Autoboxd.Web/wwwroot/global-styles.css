@@ -23,6 +23,7 @@ nav.navbar {
 
 .abp-application-layout, .abp-account-layout {
     background-color: var(--background-color) !important;
+    /*background-image: linear-gradient(0deg, #3d2f2f 0%, #141110 58%); */
 }
 
 h1, h2, h3, h4, h5, h6, p, span, div, td, tr {
