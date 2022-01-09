@@ -13,7 +13,7 @@
 }
 @if (!CurrentUser.IsAuthenticated)
 {
-    @await Component.InvokeAsync("HeroImage", new { imageUrl = "/images/hero.jpg" })
+    @await Component.InvokeAsync("HeroImage", new { imageUrl = "/download/vw-beetle.jpg" })
 }
 <div class="container @(!CurrentUser.IsAuthenticated ? "home" : "")">
     @if (!CurrentUser.IsAuthenticated)
