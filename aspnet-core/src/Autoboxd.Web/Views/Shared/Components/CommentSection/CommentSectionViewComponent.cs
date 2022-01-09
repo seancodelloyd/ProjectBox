@@ -8,7 +8,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
 namespace Autoboxd.Web.Components.CommentSection
 {
     [Widget(RefreshUrl = "/Widgets/Comments")]
-    public class CommentBoxViewComponent : AbpViewComponent
+    public class CommentSectionViewComponent : AbpViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync(IEnumerable<CommentDto> comments, bool showHeader = true)
         {

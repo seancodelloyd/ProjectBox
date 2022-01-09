@@ -273,9 +273,9 @@ footer {
     margin-top: 50px;
 }
 
-.page.cars .content{
+/*.page.cars .content{
     margin-top: 450px;
-}
+}*/
 
 .addToListButton {
     width: 100%;
@@ -305,4 +305,9 @@ footer {
 
 .dropdown-divider {
     border-color: var(--background-color-highlight);
+}
+
+.brandnav a {
+    color: var(--background-color-highlight-strong) !important;
+    cursor: pointer;
 }

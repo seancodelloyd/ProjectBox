@@ -65,8 +65,10 @@ namespace Autoboxd.Web.Pages
             };
 
             var comments = await _commentAppService.GetAll(latestCommentInput);
+
             Comments = comments.Items
                 .Where(c => c.Creator != null)
+                .OrderByDescending(c => c.CreationTime)
                 .ToList();
         }
     }

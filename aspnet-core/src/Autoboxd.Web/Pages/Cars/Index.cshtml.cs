@@ -24,6 +24,8 @@ namespace Autoboxd.Web.Pages.Cars
         }
 
         public string Name { get; set; }
+        public string Brand { get; set; }
+
         public Guid ItemId { get; set; }
         public string Description { get; set; }
         public int Year { get; set; }
@@ -50,6 +52,7 @@ namespace Autoboxd.Web.Pages.Cars
 
             ItemId = item.Id;
             Name = item.Name;
+            Brand = item.Brand;
             Description = item.Description;
             Year = item.ManufacturedYear;
             ImagePath = "/download/" + item.Path + ".jpg";

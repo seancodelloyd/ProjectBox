@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autoboxd.Items;
+using System;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
@@ -18,10 +19,14 @@ namespace Autoboxd.Comments
             ICommentAppService
     {
         private readonly IRepository<IdentityUser, Guid> _identityUserRepository;
+        private readonly IRepository<Item, Guid> _itemRepository;
 
-        public CommentAppService(IRepository<Comment, Guid> repository, IRepository<IdentityUser, Guid> identityUserRepository) : base(repository)
+        public CommentAppService(IRepository<Comment, Guid> repository, 
+            IRepository<IdentityUser, Guid> identityUserRepository,
+            IRepository<Item, Guid> itemRepository) : base(repository)
         {
             _identityUserRepository = identityUserRepository;
+            _itemRepository = itemRepository;
         }
 
         public async Task<PagedResultDto<CommentDto>> GetAll(PagedAndSortedResultRequestDto input)
@@ -30,7 +35,8 @@ namespace Autoboxd.Comments
 
             var query = from comment in queryable
                         join creator in _identityUserRepository on comment.CreatorId equals creator.Id
-                        select new { comment, creator };
+                        join item in _itemRepository on comment.EntityId equals item.Id
+                        select new { comment, creator, item };
 
             var count = query.Count();
 
@@ -45,8 +51,10 @@ namespace Autoboxd.Comments
             {
                 var commentDto = ObjectMapper.Map<Comment, CommentDto>(x.comment);
                 var creatorDto = ObjectMapper.Map<IdentityUser, IdentityUserDto>(x.creator);
+                var itemDto = ObjectMapper.Map<Item, ItemDto>(x.item);
 
                 commentDto.Creator = creatorDto;
+                commentDto.Item = itemDto;
 
                 return commentDto;
             }).ToList();

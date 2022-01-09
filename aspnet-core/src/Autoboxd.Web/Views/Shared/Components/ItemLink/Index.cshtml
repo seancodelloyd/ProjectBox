@@ -2,12 +2,14 @@
 
 <div class="component item-link shadow">
     <a href="@Model.Path">
-        <div class="imageContainer">
-            <img class="image" src="@Model.ImageUrl" />
-        </div>    
+        @if (!Model.Name.IsNullOrWhiteSpace())
+        {
+        <div class="p-2 pl-4 pr-4" style="background-color:var(--background-color-highlight-subtle)">
+            <strong>@Model.Brand</strong>
+            <br />
+            <span class="name">@Model.Name</span>
+            <span class="name float-right" style="line-height: 8px">@Model.Year</span>
+        </div>
+        }
     </a>
-    @if (!Model.Name.IsNullOrWhiteSpace())
-    {
-        <div class="name">@Model.Name</div>
-    }
 </div>

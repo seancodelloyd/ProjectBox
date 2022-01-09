@@ -33,10 +33,12 @@
             <h1>Welcome back @CurrentUser.UserName</h1>
         </div>
     }
-    <div class="col-6">
-        @await Component.InvokeAsync("CommentBox", new
-        {
-            comment = Model.Comments.First()
+<div class="offset-2 col-8">
+    @foreach (var comment in Model.Comments)
+    {
+        @await Component.InvokeAsync("CommentBox", new {
+            comment = comment
         })
-    </div>
+    }
+</div>
 </div>

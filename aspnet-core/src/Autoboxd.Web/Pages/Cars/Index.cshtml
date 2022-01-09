@@ -1,11 +1,13 @@
 ﻿@page "{title}"
+@using Volo.Abp.Users
 @model Autoboxd.Web.Pages.Cars.IndexModel
+@inject ICurrentUser CurrentUser
 @section scripts
 {
     <abp-script src="/Pages/Cars/Index.cshtml.js" />
 }
 
-@await Component.InvokeAsync("HeroImage", new { imageUrl = @Model.ImagePath })
+@*@await Component.InvokeAsync("HeroImage", new { imageUrl = @Model.ImagePath })*@
 <div class="page cars">
     <div class="content">
         <div class="row">
@@ -29,21 +31,29 @@
             </div>
             <div class="col-9">
                 <div class="title" style="display: flex;">
-                    <h1>@Model.Name</h1>
+                    <h2>@Model.Brand @Model.Name</h2>
                     <h3 style="margin-left: 10px; line-height: 50px; opacity: 70%;">@Model.Year</h3>
                 </div>
-                <div class="card pl-3 pr-3">
-                    <p>@Html.Raw(Model.Description)</p>
-                </div>
+                @*<div class="card pl-3 pr-3">
+                        <p>@Html.Raw(Model.Description)</p>
+                    </div>
 
-                <div class="card pl-3 pr-3 mt-3 mb-3">
-                    <p style="height: 300px; line-height: 300px; text-align:center;">Car specifications</p>
-                </div>
-                @await Component.InvokeAsync("CommentSection", new { comments = Model.Comments })
+                    <div class="card pl-3 pr-3 mt-3 mb-3">
+                        <p style="height: 300px; line-height: 300px; text-align:center;">Car specifications</p>
+                    </div>*@
 
-                <abp-input asp-for="@Model.Comment" label="Add a comment" />
+                @if (CurrentUser.IsAuthenticated)
+                {
+                    @await Component.InvokeAsync("CommentSection", new { comments = Model.Comments })
 
-                <a abp-button="Primary" id="postComment">Post comment</a>
+                    <abp-input asp-for="@Model.Comment" label="Add a comment" />
+
+                    <a abp-button="Primary" id="postComment">Post comment</a>
+                }
+                else
+                {
+                    <div>Please <a href="/account/login">login</a> to post a comment!</div>
+                }
             </div>
         </div>
         <!-- Bit of padding for now -->

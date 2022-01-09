@@ -1,13 +1,23 @@
-﻿@model Autoboxd.Web.Components.CommentSection.CommentSectionViewModel
+﻿@model Autoboxd.Web.Components.CommentBox.CommentBoxViewModel
 
-<div class="component comment-section">
-    <div class="comments container">
-        <div class="comment row">
-            <div class="col-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac arcu euismod, pellentesque turpis in, tempor augue. Maecenas aliquet pulvinar orci a dignissim. Duis vel lorem quis augue tincidunt tempor at a nunc. Nullam quis erat suscipit, bibendum sem eu, consequat leo. Donec nec auctor felis. Vivamus suscipit lectus et mi aliquet ullamcorper.</div>
+<div class="component comment-box">
+    <div class="comments container shadow">
+        <div class="comment row" style="background-color: var(--background-color-highlight-subtle);">
+            <div class="col-12 p-4">
+                @Model.Comment.Value
+            </div>
         </div>
-        <div class="row">
-            <div class="col-6">Ferrari F50</div>
-            <div class="col-6">Sean</div>
+        <div class="row" style="background-color: var(--background-color-highlight); padding:12px 0">
+            <div class="col-6">
+                <div style="width: 24px; height: 24px; border-radius: 32px; margin-right: 10px; background-color:var(--background-color-highlight-strong); float:left; text-align: center; font-size: 11px; line-height: 24px;">SL</div>
+                <a style="cursor:pointer;">@Model.Comment.Creator.UserName</a>
+            </div>
+            <div class="col-6" style="text-align:right">
+                <a href="Cars/@Model.Comment.Item.Path">
+                    <strong>@Model.Comment.Item.Brand</strong>
+                    <span>@Model.Comment.Item.Name</span>
+                </a>
+            </div>
         </div>
     </div>
     <br/>

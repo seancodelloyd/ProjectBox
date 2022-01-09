@@ -11,7 +11,7 @@ namespace Autoboxd.Web.Components.CommentBox
         {
             var model = new CommentBoxViewModel()
             {
-                Comment = comment,
+                Comment = comment
             };
 
             return View("Index", model);
