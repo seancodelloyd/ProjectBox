@@ -5,10 +5,10 @@
         @if (!Model.Name.IsNullOrWhiteSpace())
         {
         <div class="p-2 pl-4 pr-4" style="background-color:var(--background-color-highlight-subtle)">
-            <strong>@Model.Brand</strong>
+            <strong style="text-transform:capitalize">@Model.Name</strong>
             <br />
-            <span class="name">@Model.Name</span>
-            <span class="name float-right" style="line-height: 8px">@Model.Year</span>
+            <span class="name">@Model.Brand</span>
+            <span class="name float-right" style="line-height: 8px; font-size: 16px;">@Model.Year</span>
         </div>
         }
     </a>
