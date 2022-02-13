@@ -5,7 +5,7 @@
     --brand-color: #F2663A;
     --menu-color: #00000090;
     --card-color: #ffffff10;
-    --background-color: #141110;
+    --background-color: #100e0d;
     --background-color-light: #403a38;
     --background-color-highlight-subtle: #ffffff06;
     --background-color-highlight: #ffffff10;
@@ -69,6 +69,10 @@ a {
     opacity: 1;
 }
 
+.hero-text h1 {
+    font-size: calc(100% + 1vw + 1vh);
+}
+
 .backdropmask {
     padding-top: 500px;
     position: relative;
@@ -100,7 +104,13 @@ a {
 }
 
 .container.home {
-    padding-top: 300px;
+    padding-top: 0px;
+}
+
+@media (min-width: 576px) {
+    .container.home {
+        padding-top: 300px;
+    }
 }
 
 .home .register-button {

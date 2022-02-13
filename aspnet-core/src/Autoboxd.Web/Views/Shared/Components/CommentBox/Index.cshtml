@@ -3,8 +3,8 @@
 <div class="component comment-box">
     <div class="comments container shadow">
         <div class="comment row" style="background-color: var(--background-color-highlight-subtle);">
-            <div class="col-12 p-4">
-                @Model.Comment.Value
+            <div class="col-12 p-4" style="overflow-x: auto;">
+                @Html.Raw(Model.Comment.Value)
             </div>
         </div>
         <div class="row" style="background-color: var(--background-color-highlight); padding:12px 0">

@@ -11,14 +11,16 @@
 @section scripts {
     <abp-script src="/Pages/Index.js" />
 }
-@if (!CurrentUser.IsAuthenticated)
-{
-    @await Component.InvokeAsync("HeroImage", new { imageUrl = "/download/vw-beetle.jpg" })
-}
+<div style="display:none;" class="d-sm-block">
+    @if (!CurrentUser.IsAuthenticated)
+    {
+        @await Component.InvokeAsync("HeroImage", new { imageUrl = "/download/vw-beetle.jpg" })
+    }
+</div>
 <div class="container @(!CurrentUser.IsAuthenticated ? "home" : "")">
     @if (!CurrentUser.IsAuthenticated)
     {
-        <div class="p-5 text-center">
+        <div class="p-5 text-center hero-text">
             <h1 style="font-weight: bold">Track classic automobiles.</h1>
             <h1>Save and list your favourites.</h1>
             <h1>Share your thoughts with the world.</h1>
@@ -33,7 +35,7 @@
             <h1>Welcome back @CurrentUser.UserName</h1>
         </div>
     }
-<div class="offset-2 col-8">
+<div class="offset-lg-2 col-lg-8 col-sm-12">
     @foreach (var comment in Model.Comments)
     {
         @await Component.InvokeAsync("CommentBox", new {

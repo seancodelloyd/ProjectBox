@@ -29,7 +29,7 @@ namespace Autoboxd.Comments
             _itemRepository = itemRepository;
         }
 
-        public async Task<PagedResultDto<CommentDto>> GetAll(PagedAndSortedResultRequestDto input)
+        public async Task<PagedResultDto<CommentDto>> GetAllComments(PagedAndSortedResultRequestDto input)
         {
             var queryable = await Repository.GetQueryableAsync();
 

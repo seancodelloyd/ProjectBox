@@ -5,12 +5,13 @@
     <abp-script src="/Pages/Cars/All/Index.cshtml.js" />
 }
 
-<div class="row offset-2 col-10 p-4">
+<div class="row offset-0 col-12 col-lg-10 p-4 offset-lg-2 ">
     <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
 </div>
+
 <div class="container">
     <div class="row">
-        <div class="col-2 mt-2 mr-3" style="max-height: 600px; overflow: scroll; overflow-x: hidden;">
+        <div class="col-2 d-lg-block mt-2 mr-3" style="max-height: 600px; overflow: scroll; overflow-x: hidden; display: none;">
             <div><a>AC</a></div>
             <div><a>Adler</a></div>
             <div><a>Alfa Romeo</a></div>
@@ -110,21 +111,21 @@
             <div><a>White</a></div>
             <div><a>Willment</a></div>
         </div>
-        <div class="row col-10">
+        <div class="row col-12 col-lg-10">
             @foreach (var item in Model.Items)
             {
-                <div class="col-6 searchableItem p-1 pt-2">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-small.jpg", brand = item.Brand, year = item.ManufacturedYear, path = "/Cars/" + item.Path, name = item.Name })</div>
+                <div class="col-12 col-lg-6 searchableItem p-1 pt-2">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-small.jpg", brand = item.Brand, year = item.ManufacturedYear, path = "/Cars/" + item.Path, name = item.Name })</div>
             }
         </div>
     </div>
 </div>
 
 <script>
-    //$("input[type=search]").on('input', function () {
-    //    $(".searchableItem").each(function (item, elem) { elem.style.display = 'none'; })
-    //    var list = $(".searchableItem").filter(function (index, elem) {
-    //        return elem.innerText.indexOf($("input[type=search]").val()) > -1;
-    //    });
-    //    list.each(function (item, elem) { elem.style.display = 'block'; })
-    //});
+    $("input[type=search]").on('input', function () {
+        $(".searchableItem").each(function (item, elem) { elem.style.display = 'none'; })
+        var list = $(".searchableItem").filter(function (index, elem) {
+            return elem.innerText.indexOf($("input[type=search]").val()) > -1;
+        });
+        list.each(function (item, elem) { elem.style.display = 'block'; })
+    });
 </script>

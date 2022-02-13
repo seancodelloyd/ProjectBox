@@ -55,14 +55,26 @@ namespace Autoboxd.Items
             return itemDto;
         }
 
-        public override async Task<PagedResultDto<ItemDto>> GetListAsync(PagedAndSortedResultRequestDto input)
+        public async Task<PagedResultDto<ItemDto>> GetFilteredListAsync(PagedAndSortedResultRequestDto input, ItemSearchFilter filter)
         {
             var queryable = await Repository.GetQueryableAsync();
 
-            var query = from item in queryable
-                        select new { item };
+            var baseQuery = from item in queryable
+                            select new { item };
 
-            query = query
+            if(filter != null)
+            {
+                if(!filter.SearchTerm.IsNullOrWhiteSpace())
+                    baseQuery = baseQuery.Where(i => i.item.Name.Contains(filter.SearchTerm) || i.item.Brand.Contains(filter.SearchTerm));
+
+                if (!filter.Brand.IsNullOrWhiteSpace())
+                    baseQuery = baseQuery.Where(i => i.item.Brand == filter.Brand);
+
+                if (filter.Year != null && filter.Year != 0)
+                    baseQuery = baseQuery.Where(i => i.item.ManufacturedYear == filter.Year);
+            }
+
+            var query = baseQuery
                 .OrderBy(NormalizeSorting(input.Sorting))
                 .Skip(input.SkipCount)
                 .Take(input.MaxResultCount);
@@ -83,11 +95,11 @@ namespace Autoboxd.Items
                 .Where(r => itemIds.Any(i => i == r.ItemId))
                 .ToList();
 
-            foreach(var item in itemDtos)
+            foreach (var item in itemDtos)
             {
                 var ratingCount = ratings.Count(r => r.ItemId == item.Id);
-               
-                var rating = ratingCount > 0 
+
+                var rating = ratingCount > 0
                     ? ratings.Where(r => r.ItemId == item.Id).Sum(r => r.Value) / ratingCount
                     : 0;
 
@@ -95,12 +107,18 @@ namespace Autoboxd.Items
             }
 
             //Get the total count with another query
-            var totalCount = await Repository.GetCountAsync();
+            var totalCount = baseQuery.Count();
 
             return new PagedResultDto<ItemDto>(
                 totalCount,
                 itemDtos
             );
+        }
+
+        public override async Task<PagedResultDto<ItemDto>> GetListAsync(PagedAndSortedResultRequestDto input)
+        {
+            var list = await GetFilteredListAsync(input, null);
+            return list;
         }
 
         public async Task<ItemDto> GetByPathAsync(string path)
@@ -180,6 +198,28 @@ namespace Autoboxd.Items
             return itemDtos;
         }
 
+        public async Task<IEnumerable<string>> GetBrands()
+        {
+            var queryable = await Repository.GetQueryableAsync();
+
+            var query = from item in queryable
+                        select new { item };
+
+            var queryResult = await AsyncExecuter.ToListAsync(query);
+
+            // GET BRANDS
+            
+            var itemDtos = queryResult.Select(x =>
+            {
+                var itemDto = ObjectMapper.Map<Item, ItemDto>(x.item);
+                return itemDto;
+            }).ToList();
+
+            var brands = itemDtos.Select(x => x.Brand).ToList();
+
+            return brands;
+        }
+
         private static string NormalizeSorting(string sorting)
         {
             if (sorting.IsNullOrEmpty())
@@ -189,5 +229,12 @@ namespace Autoboxd.Items
 
             return $"item.{sorting}";
         }
+    }
+
+    public class ItemSearchFilter
+    {
+        public string Brand { get; set; }
+        public int? Year { get; set; }
+        public string SearchTerm { get; set; }
     }
 }

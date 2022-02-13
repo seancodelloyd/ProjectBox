@@ -64,7 +64,7 @@ namespace Autoboxd.Web.Pages
                 MaxResultCount = 10
             };
 
-            var comments = await _commentAppService.GetAll(latestCommentInput);
+            var comments = await _commentAppService.GetAllComments(latestCommentInput);
 
             Comments = comments.Items
                 .Where(c => c.Creator != null)

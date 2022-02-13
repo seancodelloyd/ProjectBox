@@ -29,8 +29,9 @@
     postCommentButton.on("click", function (event) {
         event.preventDefault();
 
+        debugger;
         var itemId = $("#itemId").text();
-        var commentValue = $("#Comment").val();
+        var commentValue = tinymce.get("commentBox").getContent();
 
         autoboxd.comments.comment
             .create({

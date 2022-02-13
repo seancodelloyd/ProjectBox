@@ -7,11 +7,12 @@
     <abp-script src="/Pages/Cars/Index.cshtml.js" />
 }
 
+<script src="https://cdn.tiny.cloud/1/g60sowun80ddf7cthq0sbjaawkx052hdg5z0j0cdho9h0sqz/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 @*@await Component.InvokeAsync("HeroImage", new { imageUrl = @Model.ImagePath })*@
 <div class="page cars">
     <div class="content">
         <div class="row">
-            <div class="col-3">
+            <div style="display:none;" class="col-3 d-lg-block">
                 <div class="card" style="margin-bottom: 16px; height: 250px; line-height: 250px; text-align:center;">Additional images</div>
                 <abp-dropdown class="addToListButton">
                     <abp-dropdown-button button-type="Primary" icon-type="FontAwesome" icon="plus" text="Add to list" />
@@ -29,7 +30,7 @@
                 <div class="card" style="margin-top: 16px; margin-bottom: 16px; height: 300px; line-height: 300px; text-align:center;">Featured in lists</div>
                 <div class="d-none" id="itemId">@Model.ItemId</div>
             </div>
-            <div class="col-9">
+            <div class="col-12 col-lg-9">
                 <div class="title" style="display: flex;">
                     <h2>@Model.Brand @Model.Name</h2>
                     <h3 style="margin-left: 10px; line-height: 50px; opacity: 70%;">@Model.Year</h3>
@@ -45,7 +46,7 @@
                 @await Component.InvokeAsync("CommentSection", new { comments = Model.Comments })
                 @if (CurrentUser.IsAuthenticated)
                 {
-                    <abp-input asp-for="@Model.Comment" label="Add a comment" />
+                    <abp-input asp-for="@Model.Comment" label="Add a comment" id="commentBox" />
 
                     <a abp-button="Primary" id="postComment">Post comment</a>
                 }
@@ -94,3 +95,14 @@
         <br />
     </div>
 </div>
+
+<script>
+    tinymce.init({
+        selector: 'textarea',
+      plugins: 'casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table',
+        toolbar: 'undo redo | forecolor | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image casechange',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+    });
+</script>
