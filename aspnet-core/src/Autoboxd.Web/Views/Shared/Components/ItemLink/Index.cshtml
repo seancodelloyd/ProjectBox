@@ -6,9 +6,16 @@
         {
         <div class="p-2 pl-4 pr-4" style="background-color:var(--background-color-highlight-subtle)">
             <strong style="text-transform:capitalize">@Model.Name</strong>
-            <br />
-            <span class="name">@Model.Brand</span>
-            <span class="name float-right" style="line-height: 8px; font-size: 16px;">@Model.Year</span>
+            @if (Model.Brand != null)
+            {
+                <br />
+                <span class="name">@Model.Brand</span>
+            }
+
+            @if (Model.Year != null && Model.Year != "0")
+            {
+                <span class="name float-right" style="line-height: 8px; font-size: 16px;">@Model.Year</span>
+            }
         </div>
         }
     </a>

@@ -45,17 +45,17 @@ namespace Autoboxd.Web.Menus
                 url: "/Lists/All"
             ));
 
-            context.Menu.AddItem(new ApplicationMenuItem(
-                "Autoboxd.Articles",
-                l["Menu:Articles"],
-                url: "/Articles/All"
-            ));
+            //context.Menu.AddItem(new ApplicationMenuItem(
+            //    "Autoboxd.Articles",
+            //    l["Menu:Articles"],
+            //    url: "/Articles/All"
+            //));
 
-            context.Menu.AddItem(new ApplicationMenuItem(
-                "Autoboxd.Reviews",
-                l["Menu:Reviews"],
-                url: "/Reviews/All"
-            ));
+            //context.Menu.AddItem(new ApplicationMenuItem(
+            //    "Autoboxd.Reviews",
+            //    l["Menu:Reviews"],
+            //    url: "/Reviews/All"
+            //));
 
             administration.SetSubItemOrder(IdentityMenuNames.GroupName, 2);
             administration.SetSubItemOrder(SettingManagementMenuNames.GroupName, 3);

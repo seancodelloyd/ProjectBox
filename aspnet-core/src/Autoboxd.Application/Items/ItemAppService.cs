@@ -215,7 +215,11 @@ namespace Autoboxd.Items
                 return itemDto;
             }).ToList();
 
-            var brands = itemDtos.Select(x => x.Brand).ToList();
+            var brands = itemDtos
+                .Select(x => x.Brand)
+                .Distinct()
+                .ToList()
+                .OrderBy(x => x);
 
             return brands;
         }
@@ -229,12 +233,5 @@ namespace Autoboxd.Items
 
             return $"item.{sorting}";
         }
-    }
-
-    public class ItemSearchFilter
-    {
-        public string Brand { get; set; }
-        public int? Year { get; set; }
-        public string SearchTerm { get; set; }
     }
 }

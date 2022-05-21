@@ -7,125 +7,40 @@
 
 <div class="row offset-0 col-12 col-lg-10 p-4 offset-lg-2 ">
     <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+    <button>Search</button>
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col-2 d-lg-block mt-2 mr-3" style="max-height: 600px; overflow: scroll; overflow-x: hidden; display: none;">
-            <div><a>AC</a></div>
-            <div><a>Adler</a></div>
-            <div><a>Alfa Romeo</a></div>
-            <div><a>Allard</a></div>
-            <div><a>Alvis</a></div>
-            <div><a>Amilcar</a></div>
-            <div><a>Aries</a></div>
-            <div><a>Arnolt</a></div>
-            <div><a>ASA</a></div>
-            <div><a>Aston Martin</a></div>
-            <div><a>Auburn</a></div>
-            <div><a>Audi</a></div>
-            <div><a>Austin</a></div>
-            <div><a>Austin- Healey</a></div>
-            <div><a>Ballot</a></div>
-            <div><a>Bentley</a></div>
-            <div><a>Berliet</a></div>
-            <div><a>Bizzarrini</a></div>
-            <div><a>BMW</a></div>
-            <div><a>Bristol</a></div>
-            <div><a>Bugatti</a></div>
-            <div><a>Buick</a></div>
-            <div><a>Cadillac</a></div>
-            <div><a>Chrysler</a></div>
-            <div><a>Cisitalia</a></div>
-            <div><a>Citroen</a></div>
-            <div><a>Cord</a></div>
-            <div><a>Cottin-Desgouttes</a></div>
-            <div><a>Daimler</a></div>
-            <div><a>Darraq</a></div>
-            <div><a>De Dion-Bouton</a></div>
-            <div><a>Delage</a></div>
-            <div><a>Delahaye</a></div>
-            <div><a>Delaunay-Belleville</a></div>
-            <div><a>Du Pont</a></div>
-            <div><a>Duesenberg</a></div>
-            <div><a>Facel Vega</a></div>
-            <div><a>Ferrari</a></div>
-            <div><a>Fiat</a></div>
-            <div><a>Ford (UK)</a></div>
-            <div><a>Ford (USA)</a></div>
-            <div><a>Frankiln</a></div>
-            <div><a>Frazer Nash</a></div>
-            <div><a>Giha</a></div>
-            <div><a>Healey</a></div>
-            <div><a>Hispano-Suiza</a></div>
-            <div><a>Horch</a></div>
-            <div><a>Hotchkiss</a></div>
-            <div><a>Invicta</a></div>
-            <div><a>Iso</a></div>
-            <div><a>Isotta Fraschini</a></div>
-            <div><a>Jaguar</a></div>
-            <div><a>Jensen</a></div>
-            <div><a>Kissel</a></div>
-            <div><a>Lagonda</a></div>
-            <div><a>Lamborghini</a></div>
-            <div><a>Lancia</a></div>
-            <div><a>La-Salle (GM)</a></div>
-            <div><a>Leon Bollee</a></div>
-            <div><a>Lincoln</a></div>
-            <div><a>Lorraine-Dietrich</a></div>
-            <div><a>Marmon</a></div>
-            <div><a>Maserati</a></div>
-            <div><a>Maybach</a></div>
-            <div><a>McLaren</a></div>
-            <div><a>Mercedes-Benz</a></div>
-            <div><a>Mercury</a></div>
-            <div><a>Minerva</a></div>
-            <div><a>Monteverdi</a></div>
-            <div><a>Moretti</a></div>
-            <div><a>Nash-Healey</a></div>
-            <div><a>Oldsmobile</a></div>
-            <div><a>OSCA</a></div>
-            <div><a>Packard</a></div>
-            <div><a>Panhard</a></div>
-            <div><a>Peerless</a></div>
-            <div><a>Peerless and Warwick</a></div>
-            <div><a>Peugeot</a></div>
-            <div><a>Pierce-Arrow</a></div>
-            <div><a>Plymoth</a></div>
-            <div><a>Porsche</a></div>
-            <div><a>Railton</a></div>
-            <div><a>Renault</a></div>
-            <div><a>Riley</a></div>
-            <div><a>Rochet-Schneider</a></div>
-            <div><a>Rolls-Royce</a></div>
-            <div><a>Shelby</a></div>
-            <div><a>SIATA</a></div>
-            <div><a>Stutz</a></div>
-            <div><a>Sunbeam</a></div>
-            <div><a>Talbot Lago</a></div>
-            <div><a>Talbot London</a></div>
-            <div><a>Toyota</a></div>
-            <div><a>Vauxhall</a></div>
-            <div><a>Voisin</a></div>
-            <div><a>Volkswagen</a></div>
-            <div><a>White</a></div>
-            <div><a>Willment</a></div>
-        </div>
+            </div>
         <div class="row col-12 col-lg-10">
+            @foreach (var modelName in Model.Models)
+            {
+                <div class="col-12 col-lg-6 searchableItem p-1 pt-2">
+                    @await Component.InvokeAsync("ItemLink", new { name = modelName, path = "/Cars/All?brand=" + modelName })
+                </div>
+            }
+
             @foreach (var item in Model.Items)
             {
-                <div class="col-12 col-lg-6 searchableItem p-1 pt-2">@await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-small.jpg", brand = item.Brand, year = item.ManufacturedYear, path = "/Cars/" + item.Path, name = item.Name })</div>
+                <div class="col-12 col-lg-6 searchableItem p-1 pt-2">
+                    @await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-small.jpg", brand = item.Brand, year = item.ManufacturedYear, path = "/Cars/" + item.Path, name = item.Name })
+                </div>
             }
         </div>
     </div>
 </div>
 
 <script>
-    $("input[type=search]").on('input', function () {
-        $(".searchableItem").each(function (item, elem) { elem.style.display = 'none'; })
-        var list = $(".searchableItem").filter(function (index, elem) {
-            return elem.innerText.indexOf($("input[type=search]").val()) > -1;
-        });
-        list.each(function (item, elem) { elem.style.display = 'block'; })
-    });
+    //$("input[type=search]").on('input', function () {
+    //    $(".searchableItem").each(function (item, elem) { elem.style.display = 'none'; })
+
+    //    var list = $(".searchableItem").filter(function (index, elem) {
+    //        return elem.innerText.indexOf($("input[type=search]").val()) > -1;
+    //    });
+    //    list.each(function (item, elem) { elem.style.display = 'block'; })
+    //});
+
+    // ON RETURN, RELOAD WITH SEARCH
 </script>
