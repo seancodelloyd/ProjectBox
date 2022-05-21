@@ -326,3 +326,38 @@ footer {
     color: var(--background-color-highlight-strong) !important;
     cursor: pointer;
 }
+
+.searchBar {
+    width: calc(100% - 50px);
+    border-radius: 4px 0 0 4px;
+}
+
+.searchBar.small {
+    width: calc(100% - 100px);
+}
+
+.searchButton {
+    background-color: var(--brand-color);
+    width: 50px;
+    border-radius: 0 4px 4px 0;
+    color: white;
+}
+
+.backButton {
+    width: 50px;
+    color: white;
+}
+
+.spinner-container {
+    width: 100%;
+    left: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+    text-align: center;
+    line-height: 100px;
+}
+
+.row.faded {
+    opacity: 0.5;
+}

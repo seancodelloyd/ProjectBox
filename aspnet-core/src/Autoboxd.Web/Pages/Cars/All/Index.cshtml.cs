@@ -13,6 +13,8 @@ namespace Autoboxd.Web.Pages.Cars.All
 
         public IEnumerable<ItemDto> Items { get; set; }
         public IEnumerable<string> Models { get; set; }
+        public string SearchTerm;
+        public bool HasFilter { get; set; }
 
         public IndexModel(IItemAppService itemAppService)
         {
@@ -33,15 +35,19 @@ namespace Autoboxd.Web.Pages.Cars.All
                 SearchTerm = searchTerm
             };
 
+            SearchTerm = searchTerm;
+
             if (brand == null && year == null && searchTerm == null)
             {
                 var models = await _itemAppService.GetBrands();
                 Models = models;
+                HasFilter = false;
             } 
             else
             {
                 var items = await _itemAppService.GetFilteredListAsync(reviewInput, filter);
                 Items = items.Items;
+                HasFilter = true;
             }
         }
     }

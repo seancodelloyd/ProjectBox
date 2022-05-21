@@ -5,19 +5,36 @@
     <abp-script src="/Pages/Cars/All/Index.cshtml.js" />
 }
 
-<div class="row offset-0 col-12 col-lg-10 p-4 offset-lg-2 ">
-    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-    <button>Search</button>
+<div class="row">
+    <div class="col-12 col-lg-8 offset-lg-2 p-4" style="display: flex;">
+        @if (Model.HasFilter)
+        {
+            <abp-button class="backButton" onclick="clearSearch()"><i class="fa fa-arrow-left"></i></abp-button>
+            <input type="search" class="form-control searchBar small" placeholder="Search..." aria-label="Search" value="@Model.SearchTerm">
+            <abp-button class="searchButton" onclick="search()"><i class="fa fa-search"></i></abp-button>
+        }
+        else
+        {
+            <input type="search" class="form-control searchBar" placeholder="Search..." aria-label="Search">
+            <abp-button class="searchButton" onclick="search()"><i class="fa fa-search"></i></abp-button>
+        }
+    </div>
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-2 d-lg-block mt-2 mr-3" style="max-height: 600px; overflow: scroll; overflow-x: hidden; display: none;">
-            </div>
-        <div class="row col-12 col-lg-10">
+    <div class="spinner-container invisible">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    @if (Model.Items.Count() > 0)
+    {
+        @await Component.InvokeAsync("ContentSection", new { title = Model.Items.Count().ToString() + (Model.Items.Count() == 1 ? " result" : " results") })
+    }
+    <div class="row mainRow">
             @foreach (var modelName in Model.Models)
             {
-                <div class="col-12 col-lg-6 searchableItem p-1 pt-2">
+                <div class="col-12 col-md-6 col-lg-4 searchableItem p-1 pt-2">
                     @await Component.InvokeAsync("ItemLink", new { name = modelName, path = "/Cars/All?brand=" + modelName })
                 </div>
             }
@@ -28,8 +45,15 @@
                     @await Component.InvokeAsync("ItemLink", new { imageUrl = "/download/" + item.Path + "-small.jpg", brand = item.Brand, year = item.ManufacturedYear, path = "/Cars/" + item.Path, name = item.Name })
                 </div>
             }
-        </div>
     </div>
+
+    @if (Model.Models.Count() == 0 && Model.Items.Count() == 0)
+    {
+        <br />
+        <div style="opacity:0.5;">
+            <h5 style="text-align: center;">No results returned for this search!</h5>
+        </div>
+    }
 </div>
 
 <script>
@@ -41,6 +65,31 @@
     //    });
     //    list.each(function (item, elem) { elem.style.display = 'block'; })
     //});
+
+    var input = document.getElementsByClassName("searchBar")[0];
+
+    input.addEventListener("keypress", function (event) {
+        if (event.key === "Enter" && input.value.length > 0) {
+            event.preventDefault();
+            search();
+        }
+    });
+
+    function clearSearch() {
+        showSpinner();
+        window.location.href = "/Cars/All?searchTerm=";
+    }
+
+    function search() {
+        showSpinner();
+        window.location.href = "/Cars/All?searchTerm=" + input.value;
+    }
+
+    function showSpinner() {
+        document.getElementsByClassName("spinner-container")[0].classList.remove("invisible");
+        document.getElementsByClassName("spinner-container")[0].classList.add("visible");
+        document.getElementsByClassName("mainRow")[0].classList.add("faded");
+    }
 
     // ON RETURN, RELOAD WITH SEARCH
 </script>
