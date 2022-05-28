@@ -69,9 +69,6 @@ a {
     opacity: 1;
 }
 
-.hero-text h1 {
-    font-size: calc(100% + 1vw + 1vh);
-}
 
 .backdropmask {
     padding-top: 500px;
