@@ -13,21 +13,48 @@
     <div class="content">
         <div class="row">
             <div style="display:none;" class="col-3 d-lg-block">
-                <div class="card" style="margin-bottom: 16px; height: 250px; line-height: 250px; text-align:center;">Additional images</div>
-                <abp-dropdown class="addToListButton">
-                    <abp-dropdown-button button-type="Primary" icon-type="FontAwesome" icon="plus" text="Add to list" />
-                    <abp-dropdown-menu>
-                        @foreach (var list in Model.Lists)
-                        {
-                            <abp-dropdown-item id="@list.Id" class="addToList">@list.Title</abp-dropdown-item>
-                        }
-                        <abp-dropdown-divider></abp-dropdown-divider>
-                        <abp-dropdown-item id="createNewList">Add to new list...</abp-dropdown-item>
-                    </abp-dropdown-menu>
-                </abp-dropdown>
-                <div class="card" style="margin-bottom: 16px; height: 150px; line-height: 150px; text-align:center;">Rating</div>
-                <div class="card" style="margin-top: 16px; margin-bottom: 16px; height: 200px; line-height: 200px; text-align:center;">Advert</div>
-                <div class="card" style="margin-top: 16px; margin-bottom: 16px; height: 300px; line-height: 300px; text-align:center;">Featured in lists</div>
+                <div class="card" style="border-radius: 5px 5px 0 0; text-align:center;">
+                    <h6 style="margin: 10px;">Rate this!</h6>
+                </div>
+                <div class="cardbody" style="text-align:center; background-color: #ffffff05; border-radius: 0 0 5px 5px;">
+                    <div class="rating">
+                        <!-- Thumbs up -->
+                        <div class="like" onclick="like()">
+                            <i id="likeButton" class="fa fa-thumbs-up fa-2x like" aria-hidden="true"></i>
+                            <div id="likeVotes" class="display-none">
+                                <div>20%</div>
+                                <div>1 vote</div>
+                            </div>
+                        </div>
+                        <!-- Thumbs down -->
+                        <div class="dislike" onclick="dislike()">
+                            <i id="dislikeButton" class="fa fa-thumbs-down fa-2x dislike" aria-hidden="true"></i>
+                            <div id="dislikeVotes" class="display-none">
+                                <div>80%</div>
+                                <div>4 votes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                @if (CurrentUser.IsAuthenticated)
+                {
+                    <abp-dropdown class="addToListButton">
+                        <abp-dropdown-button button-type="Primary" icon-type="FontAwesome" icon="plus" text="Add to list" />
+                        <abp-dropdown-menu>
+                            @foreach (var list in Model.Lists)
+                            {
+                                <abp-dropdown-item id="@list.Id" class="addToList">@list.Title</abp-dropdown-item>
+                            }
+                            <abp-dropdown-divider></abp-dropdown-divider>
+                            <abp-dropdown-item id="createNewList">Add to new list...</abp-dropdown-item>
+                        </abp-dropdown-menu>
+                    </abp-dropdown>
+                }
+                else
+                {
+            <div class="text-center"><a href="/account/login">Login</a> to add to your lists!</div>
+                }
                 <div class="d-none" id="itemId">@Model.ItemId</div>
             </div>
             <div class="col-12 col-lg-9">
@@ -48,10 +75,11 @@
         </div>*@
 
                 @await Component.InvokeAsync("CommentSection", new { comments = Model.Comments })
+
                 @if (CurrentUser.IsAuthenticated)
                 {
                     <abp-input asp-for="@Model.Comment" label="Add a comment" id="commentBox" />
-
+                    @*<abp-input asp-for="@Model.UploadFileDto.File"></abp-input>*@
                     <a abp-button="Primary" id="postComment">Post comment</a>
                 }
                 else
@@ -102,11 +130,37 @@
 
 <script>
     tinymce.init({
-        selector: 'textarea',
-      plugins: 'autolink lists media table',
-        toolbar: 'undo redo | forecolor | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image',
-      toolbar_mode: 'floating',
-      tinycomments_mode: 'embedded',
-      tinycomments_author: 'Author name',
+        selector: "textarea",
+        plugins: "emoticons image imagetools",
+        toolbar: "emoticons image",
+        toolbar_location: "bottom",
+        paste_data_images: true,
+        images_upload_url: '/upload/tinymce',
+        automatic_uploads: true,
+        image_file_types: 'jpeg,jpg,jpe,jfi,jif,jfif,png,gif,bmp,webp',
+        menubar: false
     });
+
+    function like() {
+        document.getElementById("likeButton").classList.remove("active");
+        document.getElementById("dislikeButton").classList.remove("active");
+
+        document.getElementById("likeVotes").classList.remove("display-none");
+        document.getElementById("dislikeVotes").classList.remove("display-none");
+
+
+        document.getElementById("likeButton").classList.add("active");
+        toastr.success("You liked this!")
+    }
+
+    function dislike() {
+        document.getElementById("likeButton").classList.remove("active");
+        document.getElementById("dislikeButton").classList.remove("active");
+
+        document.getElementById("likeVotes").classList.remove("display-none");
+        document.getElementById("dislikeVotes").classList.remove("display-none");
+
+        document.getElementById("dislikeButton").classList.add("active");
+        toastr.success("You disliked this")
+    }
 </script>

@@ -60,7 +60,7 @@ namespace Autoboxd.Web.Pages
 
             var latestCommentInput = new PagedAndSortedResultRequestDto()
             {
-                Sorting = "CreationTime",
+                Sorting = "CreationTime DESC",
                 MaxResultCount = 10
             };
 

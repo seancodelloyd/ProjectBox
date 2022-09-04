@@ -7,16 +7,21 @@
     }
 
     <div class="comments container">
+        @if (Model.Comments.Count() == 0)
+        {
+            <div style="text-align: center; margin-bottom: 10px;">There are no comments yet! Be the first to add one.</div>
+        }
+
         @foreach (var comment in Model.Comments)
         {
-        <div class="comment row">
-            <div class="col-2">
-                <div style="width: 24px; height: 24px; border-radius: 32px; margin-right: 10px; background-color:var(--background-color-highlight-strong); float:left; text-align: center; font-size: 11px; line-height: 24px;">@comment.Creator.UserName.Substring(0,1)</div>
-                @comment.Creator.UserName
+            <div class="comment row">
+                <div class="col-2">
+                    <div style="width: 24px; height: 24px; border-radius: 32px; margin-right: 10px; background-color:var(--background-color-highlight-strong); float:left; text-align: center; font-size: 11px; line-height: 24px;">@comment.Creator.UserName.Substring(0, 1)</div>
+                    @comment.Creator.UserName
+                </div>
+                <div class="col-10">@Html.Raw(comment.Value)</div>
             </div>
-            <div class="col-10">@Html.Raw(comment.Value)</div>
-        </div>
-        <hr class="dropdown-divider" /> // TODO: Better class name
+            <hr class="dropdown-divider" />// TODO: Better class name
         }
     </div>
     <br/>

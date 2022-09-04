@@ -1,12 +1,18 @@
 using Autoboxd.Comments;
+using Autoboxd.Files;
 using Autoboxd.Items;
 using Autoboxd.Lists;
+using Autoboxd.Web.Pages.Files;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
+using Volo.Abp.Users;
 
 namespace Autoboxd.Web.Pages.Cars
 {
@@ -15,12 +21,23 @@ namespace Autoboxd.Web.Pages.Cars
         public readonly IItemAppService _itemAppService;
         public readonly IListAppService _listAppService;
         public readonly ICommentAppService _commentAppService;
+        private readonly IFileAppService _fileAppService;
+        private readonly ICurrentUser _currentUser;
 
-        public IndexModel(IItemAppService itemAppService, IListAppService listAppService, ICommentAppService commentAppService)
+        [BindProperty]
+        public UploadFileDto UploadFileDto { get; set; }
+
+        public IndexModel(IItemAppService itemAppService, 
+            IListAppService listAppService, 
+            ICommentAppService commentAppService,
+            IFileAppService fileAppService,
+            ICurrentUser currentUser)
         {
             _itemAppService = itemAppService;
             _listAppService = listAppService;
             _commentAppService = commentAppService;
+            _fileAppService = fileAppService;
+            _currentUser = currentUser;
         }
 
         public string Name { get; set; }
@@ -48,7 +65,9 @@ namespace Autoboxd.Web.Pages.Cars
                 MaxResultCount = 1000
             };
 
-            var lists = await _listAppService.GetListAsync(listInput);
+            var listQuery = await _listAppService.GetListAsync(listInput);
+
+            var lists = listQuery.Items.Where(l => l.CreatorId == _currentUser.Id).ToList();
 
             ItemId = item.Id;
             Name = item.Name;
@@ -57,7 +76,7 @@ namespace Autoboxd.Web.Pages.Cars
             Year = item.ManufacturedYear;
             ImagePath = "/download/" + item.Path + ".jpg";
             Rating = item.Rating;
-            Lists = lists.Items;
+            Lists = lists;
 
             var commentInput = new PagedAndSortedResultRequestDto()
             {
@@ -69,5 +88,23 @@ namespace Autoboxd.Web.Pages.Cars
             Comments = comments.Items;
             CommentCount = comments.TotalCount;
         }
+
+        //public async Task<IActionResult> OnPostAsync()
+        //{
+        //    using (var memoryStream = new MemoryStream())
+        //    {
+        //        await UploadFileDto.File.CopyToAsync(memoryStream);
+
+        //        await _fileAppService.SaveBlobAsync(
+        //            new SaveBlobInputDto
+        //            {
+        //                Name = UploadFileDto.Name,
+        //                Content = memoryStream.ToArray()
+        //            }
+        //        );
+        //    }
+
+        //    return Page();
+        //}
     }
 }

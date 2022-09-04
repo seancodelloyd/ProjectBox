@@ -9,6 +9,7 @@ namespace Autoboxd.Web.Pages.Cars.All
 {
     public class IndexModel : PageModel
     {
+
         public readonly IItemAppService _itemAppService;
 
         public IEnumerable<ItemDto> Items { get; set; }

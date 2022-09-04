@@ -13,6 +13,15 @@ namespace Autoboxd.Files
             _fileAppService = fileAppService;
         }
 
+        [HttpPost]
+        [Route("upload/tinymce")]
+        public async Task<IActionResult> UploadAsync(string test)
+        {
+            var fileDto = await _fileAppService.GetBlobAsync(new GetBlobRequestDto { Name = test });
+
+            return File(fileDto.Content, "application/octet-stream", fileDto.Name);
+        }
+
         [HttpGet]
         [Route("download/{fileName}")]
         public async Task<IActionResult> DownloadAsync(string fileName)

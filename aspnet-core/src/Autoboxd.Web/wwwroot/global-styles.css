@@ -110,6 +110,13 @@ a {
     }
 }
 
+@media only screen and (max-width: 600px) {
+    .hero-text h1 {
+        font-size: 2em;
+    }
+}
+
+
 .home .register-button {
     font-weight: bold;
     text-transform: uppercase;
@@ -357,4 +364,40 @@ footer {
 
 .row.faded {
     opacity: 0.5;
+}
+
+
+.rating {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.like,
+.dislike {
+    display: inline-block;
+    cursor: pointer;
+    margin: 10px;
+    color: white;
+    opacity: 0.75;
+}
+
+    .dislike:hover,
+    .like:hover {
+        color: white;
+        opacity: 1;
+    }
+
+.like.active, .dislike.active {
+    color: var(--brand-color) !important;
+    opacity: 1;
+}
+
+footer {
+    visibility: hidden;
+    max-height: 20px;
+}
+
+.display-none {
+    display: none;
 }
